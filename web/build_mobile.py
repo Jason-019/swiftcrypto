@@ -22,6 +22,8 @@ with open(CSV, 'r', encoding='utf-8', errors='replace') as f:
 # 生成紧凑数据块: album|song|lyric 每行
 lyric_lines = []
 for a in sorted(data):
+    if a.lower() in ('album', 'unknown', ''):
+        continue
     for s in sorted(data[a]):
         for l in data[a][s]:
             esc = l.replace('\\', '\\\\').replace('`', '\\`')
@@ -149,6 +151,7 @@ textarea[readonly]{{background:rgba(0,0,0,0.15)}}
 <div class="pwd-row">
     <input type="password" id="password" placeholder="共享密码…" autocomplete="off">
     <button class="icon-btn" id="togglePwd" onclick="togglePwd()">👁</button>
+    <button class="icon-btn" onclick="genPwd()" title="生成随机密码" style="color:#fbbf24;">🎲</button>
     <button class="icon-btn" onclick="openLyricPicker()" title="从歌词挑选" style="color:var(--accent)">📜</button>
 </div>
 
@@ -228,6 +231,12 @@ function t(m){{const e=document.getElementById('toast');e.textContent=m;e.classL
 function clearArea(id){{document.getElementById(id).value='';uc()}}
 async function copyText(id){{const v=document.getElementById(id).value;if(!v)return t('⚠️ 无内容');try{{await navigator.clipboard.writeText(v);t('✅ 已复制')}}catch{{document.getElementById(id).select();document.execCommand('copy');t('✅ 已复制')}}}}
 function uc(){{document.getElementById('cipherCount').textContent='密文: '+document.getElementById('cipherOutput').value.length+' 字';document.getElementById('plainCount').textContent='明文: '+document.getElementById('plainOutput').value.length+' 字'}}
+function genPwd(){{
+    const w='starlight wonder midnight crystal velvet golden crimson silver whisper shadow dawn autumn winter summer thunder lightning rainbow phoenix dragon eagle ocean river mountain forest meadow garden castle bridge tower mirror'.split(' ');
+    const p=w[Math.floor(Math.random()*w.length)]+'-'+Math.floor(Math.random()*900+100)+'-'+w[Math.floor(Math.random()*w.length)];
+    document.getElementById('password').value=p;document.getElementById('password').type='text';
+    document.getElementById('togglePwd').textContent='🙈';t('🎲 '+p);
+}}
 
 // Lyrics Picker (full embedded data, custom selects)
 const LYRIC_DATA=`{embedded}`;

@@ -202,6 +202,7 @@ textarea[readonly] { background: rgba(0,0,0,0.15); }
         <label>🔑 密码</label>
         <input type="password" id="password" placeholder="双方约定的共享密码…" autocomplete="off">
         <button class="icon-btn" id="togglePwd" onclick="togglePassword()" title="显示/隐藏密码">👁</button>
+        <button class="icon-btn" onclick="genPwd()" title="生成随机密码" style="color:#fbbf24;">🎲</button>
         <button class="icon-btn" onclick="openLyricPicker()" title="从歌词库挑选密码" style="color:#a78bfa;">📜</button>
 
         <label>🎨 主题</label>
@@ -306,8 +307,13 @@ function togglePassword(){
     const el=document.getElementById('password'),btn=document.getElementById('togglePwd');
     if(el.type==='password'){el.type='text';btn.textContent='🙈';btn.classList.add('active');}
     else{el.type='password';btn.textContent='👁';btn.classList.remove('active');}
-}
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+}function genPwd(){
+    const w='starlight wonder midnight crystal velvet golden crimson silver whisper shadow dawn autumn winter summer thunder lightning rainbow phoenix dragon eagle ocean river mountain forest meadow garden castle bridge tower mirror'.split(' ');
+    const p=w[Math.floor(Math.random()*w.length)]+'-'+Math.floor(Math.random()*900+100)+'-'+w[Math.floor(Math.random()*w.length)];
+    document.getElementById('password').value=p; document.getElementById('password').type='text';
+    document.getElementById('togglePwd').textContent='🙈'; document.getElementById('togglePwd').classList.add('active');
+    toast('🎲 '+p);
+}function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
 function clearArea(id){document.getElementById(id).value='';updateCounts();}
 async function copyText(id){
     const t=document.getElementById(id).value;
