@@ -1,0 +1,26 @@
+# 构建产物
+build/
+dist/
+*.spec
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# 桌面应用源码（只发布 web 版）
+*.py
+!web/*.py
+
+# 资源文件（桌面版专用）
+ico/
+gifs/
+Background_Images/
+json_files/
+_archived/
+
+# 系统文件
+.DS_Store
+Thumbs.db
