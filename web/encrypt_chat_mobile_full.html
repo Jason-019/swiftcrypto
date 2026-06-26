@@ -321,9 +321,6 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
                 <button class="btn btn-outline" onclick="downloadEraGrid()">📥 保存到相册</button>
             </div>
             <div class="btn-row">
-                <button class="btn btn-outline" onclick="downloadEraCard()" style="background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.25);color:#c4b5fd">🎴 保存收藏卡</button>
-            </div>
-            <div class="btn-row">
                 <button class="btn btn-outline" onclick="closeShareModal()">关闭</button>
                 <button class="btn btn-primary" onclick="copyShareLink()">📋 复制链接</button>
             </div>
@@ -944,48 +941,26 @@ async function copyEraGridToClipboard(){
     }
 }
 function downloadEraGrid(){
-    const cv=document.getElementById('eraGridCanvas');
-    if(!cv)return;
-    const ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15);
-    const a=document.createElement('a');a.download='swiftcrypto-era-'+ts+'.png';
-    a.href=cv.toDataURL('image/png');a.click();t('✅ 图片已保存！发微信给朋友')
-}
-function downloadEraCard(){
     const gridCv=document.getElementById('eraGridCanvas');
     if(!gridCv)return;
     const cardW=gridCv.width+40,cardH=gridCv.height+100;
     const cv=document.createElement('canvas');cv.width=cardW;cv.height=cardH;
     const ctx=cv.getContext('2d');
-    // Card background with gradient
     const grad=ctx.createLinearGradient(0,0,cardW,cardH);
     grad.addColorStop(0,'#1a1a2e');grad.addColorStop(0.5,'#16213e');grad.addColorStop(1,'#0f0f1a');
     ctx.fillStyle=grad;roundRect(ctx,0,0,cardW,cardH,16);ctx.fill();
-    // Gold border
-    ctx.strokeStyle='rgba(167,139,250,0.6)';ctx.lineWidth=3;
+    ctx.strokeStyle='rgba(167,139,250,0.5)';ctx.lineWidth=2;
     roundRect(ctx,2,2,cardW-4,cardH-4,14);ctx.stroke();
-    ctx.strokeStyle='rgba(167,139,250,0.2)';ctx.lineWidth=1;
-    roundRect(ctx,6,6,cardW-12,cardH-12,12);ctx.stroke();
-    // Draw the Era Grid centered
-    const gridX=Math.floor((cardW-gridCv.width)/2);
-    const gridY=50;
-    ctx.drawImage(gridCv,gridX,gridY);
-    // Header
+    ctx.drawImage(gridCv,Math.floor((cardW-gridCv.width)/2),50);
     ctx.fillStyle='#a78bfa';ctx.font='bold 16px -apple-system,sans-serif';ctx.textAlign='center';
-    ctx.fillText('🔐 SwiftCrypto Era Card',cardW/2,28);
-    // Footer with timestamp
+    ctx.fillText('🔐 SwiftCrypto',cardW/2,28);
     const now=new Date();
-    const dateStr=now.toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'});
-    const timeStr=now.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
-    ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='11px monospace';ctx.textAlign='center';
-    ctx.fillText(dateStr+'  '+timeStr+'  ·  '+gridCv.width+'×'+gridCv.height,cardW/2,gridY+gridCv.height+28);
-    // Album theme label
-    const themeName=document.getElementById('themeName').textContent;
-    ctx.fillStyle='rgba(255,255,255,0.25)';ctx.font='10px -apple-system,sans-serif';
-    ctx.fillText('🎨 '+themeName+'  ·  Era Color Cipher',cardW/2,gridY+gridCv.height+46);
-    // Download
+    ctx.fillStyle='rgba(255,255,255,0.35)';ctx.font='11px monospace';
+    ctx.fillText(now.toLocaleDateString('zh-CN')+' '+now.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}),cardW/2,gridCv.height+82);
+    ctx.fillText('🎨 '+document.getElementById('themeName').textContent+' · Era Cipher',cardW/2,gridCv.height+98);
     const ts=now.toISOString().replace(/[-:]/g,'').slice(0,15);
-    const a=document.createElement('a');a.download='swiftcrypto-card-'+ts+'.png';
-    a.href=cv.toDataURL('image/png');a.click();t('🎴 Era 收藏卡已保存！')
+    const a=document.createElement('a');a.download='swiftcrypto-'+ts+'.png';
+    a.href=cv.toDataURL('image/png');a.click();t('🎴 收藏卡已保存')
 }
 function roundRect(ctx,x,y,w,h,r){
     ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
