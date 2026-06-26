@@ -182,6 +182,13 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
 .sd-row .sd-time input:focus{border-color:var(--accent)}
 .sd-badge{display:inline-block;font-size:0.55rem;background:#f97316;color:#fff;padding:1px 5px;border-radius:3px;margin-left:4px;vertical-align:middle}
 .sd-countdown{font-size:0.55rem;color:#f97316;margin-left:4px}
+/* Auto-paste toggle (standalone, not inside sd-row) */
+.chat-auto-toggle{display:flex;align-items:center;cursor:pointer}
+.chat-auto-toggle input{display:none}
+.chat-auto-toggle .switch{width:28px;height:16px;border-radius:8px;background:rgba(255,255,255,0.12);position:relative;transition:background .3s;flex-shrink:0}
+.chat-auto-toggle .switch::after{content:'';position:absolute;top:1.5px;left:1.5px;width:13px;height:13px;border-radius:50%;background:#fff;transition:left .3s}
+.chat-auto-toggle input:checked+.switch{background:var(--accent)}
+.chat-auto-toggle input:checked+.switch::after{left:13.5px}
 </style>
 </head>
 <body>
@@ -288,24 +295,25 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
             <textarea id="chatInput" placeholder="输入消息…" rows="1"></textarea>
             <button class="btn btn-primary" onclick="chatSend()" style="flex:none">🔒 发送</button>
         </div>
-        <div id="chatCipherRow" style="display:none;margin-top:4px">
+        <div id="chatCipherRow" style="display:none;margin-top:2px">
             <div style="display:flex;gap:4px;align-items:center">
-                <span style="font-size:0.65rem;color:var(--dim);white-space:nowrap">📋</span>
-                <code id="chatCipherText" style="flex:1;font-size:0.65rem;color:var(--accent);word-break:break-all;background:rgba(0,0,0,0.25);padding:6px 8px;border-radius:6px;max-height:36px;overflow:hidden"></code>
-                <button class="btn btn-copy" onclick="copyChatCipher()" style="flex:none;padding:6px 10px;font-size:0.7rem">📋</button>
-                <button class="btn btn-outline" onclick="shareChatCipher()" style="flex:none;padding:4px 7px;font-size:0.65rem">📤</button>
-                <button class="btn btn-outline" id="chatEmojiToggle" onclick="toggleChatEmoji()" style="flex:none;padding:4px 7px;font-size:0.65rem">🎭</button>
+                <code id="chatCipherText" style="flex:1;font-size:0.6rem;color:var(--accent);word-break:break-all;background:rgba(0,0,0,0.25);padding:5px 8px;border-radius:6px;max-height:30px;overflow:hidden"></code>
+                <button class="btn btn-copy" onclick="copyChatCipher()" style="flex:none;padding:4px 8px;font-size:0.65rem">📋</button>
+                <button class="btn btn-outline" onclick="shareChatCipher()" style="flex:none;padding:4px 6px;font-size:0.6rem">📤</button>
+                <button class="btn btn-outline" id="chatEmojiToggle" onclick="toggleChatEmoji()" style="flex:none;padding:4px 6px;font-size:0.6rem">🎭</button>
             </div>
         </div>
-        <div class="chat-input-row" style="margin-top:4px">
-            <label style="display:flex;align-items:center;gap:4px;font-size:0.6rem;color:var(--dim);cursor:pointer;flex-shrink:0">
-                <input type="checkbox" id="autoPasteChat" onchange="toggleAutoPasteChat()"> 📋 自动粘贴
+        <div class="chat-input-row" style="margin-top:6px">
+            <textarea id="chatRecvInput" placeholder="📥 粘贴密文…" rows="1" onfocus="autoPasteIfEnabled()" style="flex:1"></textarea>
+            <label class="sd-toggle chat-auto-toggle" title="📋 自动粘贴剪贴板" style="flex-shrink:0">
+                <input type="checkbox" id="autoPasteChat" onchange="toggleAutoPasteChat()">
+                <span class="switch"></span>
             </label>
-            <textarea id="chatRecvInput" placeholder="📥 粘贴对方发来的密文…" rows="1" onfocus="autoPasteIfEnabled()"></textarea>
             <button class="btn btn-copy" onclick="chatReceive()" style="flex:none">🔓 解密</button>
         </div>
-        <div class="chat-actions">
+        <div class="chat-actions" style="justify-content:space-between">
             <button class="btn btn-outline" onclick="clearChat()" style="flex:none">🗑 清除记录</button>
+            <span style="font-size:0.55rem;color:var(--dim)">📋=自动粘贴</span>
         </div>
     </div>
 </div>
