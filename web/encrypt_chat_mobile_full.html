@@ -14,6 +14,11 @@ body{
     font-family:-apple-system,'PingFang SC',system-ui,sans-serif;
     background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;
     display:flex;flex-direction:column;color-scheme:dark;transition:background 0.5s;
+    position:relative;
+}
+body::before{
+    content:'';position:fixed;inset:0;background:#000;
+    pointer-events:none;z-index:-1;opacity:0;transition:opacity 0.4s;
 }
 .topbar{
     display:flex;align-items:center;gap:8px;padding:10px 12px;
@@ -111,10 +116,22 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
 /* Share modal */
 #shareModal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);justify-content:center;align-items:flex-end}
 #shareModal.show{display:flex}
-#shareModal .sheet{background:rgba(20,20,45,0.98);border-radius:16px 16px 0 0;padding:16px;width:100%;max-height:70vh;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+#shareModal .sheet{background:rgba(20,20,45,0.98);border-radius:16px 16px 0 0;padding:16px;width:100%;max-height:70vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px;
+    scrollbar-width:auto;scrollbar-color:rgba(255,255,255,0.3) transparent}
+#shareModal .sheet::-webkit-scrollbar{width:20px}
+#shareModal .sheet::-webkit-scrollbar-track{background:transparent}
+#shareModal .sheet::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.22);border-radius:10px;border:4px solid transparent;background-clip:content-box}
+#shareModal .sheet::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.4);background-clip:content-box}
 #shareModal .sheet h3{font-size:1rem;text-align:center}
 #shareModal input{width:100%;padding:10px;border-radius:var(--rs);border:1px solid var(--border);background:rgba(255,255,255,0.05);color:var(--text);font-size:0.8rem;outline:none}
-#shareLink{word-break:break-all;font-size:0.75rem;color:var(--accent);background:rgba(0,0,0,0.3);padding:10px;border-radius:var(--rs);border:1px solid var(--border);max-height:80px;overflow-y:auto}
+#shareModal .modal-btns{display:flex;flex-direction:column;gap:10px}
+#shareModal .modal-btns .btn-row{display:flex;gap:8px}
+#shareModal .modal-btns .btn-row .btn{flex:1;justify-content:center}
+#shareLink{word-break:break-all;font-size:0.65rem;color:var(--accent);background:rgba(0,0,0,0.3);padding:10px;border-radius:var(--rs);border:1px solid var(--border);max-height:100px;overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.25) transparent}
+#shareLink::-webkit-scrollbar{width:16px}
+#shareLink::-webkit-scrollbar-track{background:transparent}
+#shareLink::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:8px;border:3px solid transparent;background-clip:content-box}
 /* Chat mode */
 .chat-area{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:6px 0;min-height:200px;max-height:50vh}
 .chat-msg{max-width:85%;padding:10px 14px;border-radius:16px;font-size:0.85rem;line-height:1.45;animation:msgIn .3s ease;word-break:break-word;position:relative}
@@ -163,12 +180,12 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
 </div>
 <div class="pwd-strength"><div id="pwdStrengthBar"></div></div>
 <div class="pwd-label" id="pwdStrengthLabel"></div>
-<div id="pwdHistory" style="display:none;margin:0 12px 4px;padding:6px 8px;border-radius:var(--rs);background:rgba(0,0,0,0.25);border:1px solid var(--border);max-height:120px;overflow-y:auto">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-        <span style="font-size:0.65rem;color:var(--dim)">🕐 最近使用</span>
+<div id="pwdHistory" style="display:none;margin:0 12px 4px;padding:0;border-radius:var(--rs);background:rgba(0,0,0,0.3);border:1px solid var(--border);overflow:hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px 4px;border-bottom:1px solid rgba(255,255,255,0.05)">
+        <span style="font-size:0.65rem;color:var(--dim)">🕐 最近使用 (保留20条)</span>
         <button onclick="clearPwdHistory()" style="font-size:0.6rem;color:var(--dim);background:none;border:none;cursor:pointer">清空</button>
     </div>
-    <div id="pwdHistoryItems"></div>
+    <div id="pwdHistoryItems" style="max-height:140px;overflow-y:auto;padding:2px 0;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent"></div>
 </div>
 
 <div style="display:flex;align-items:center;gap:6px;padding:4px 12px;font-size:0.75rem;color:var(--dim);">
@@ -259,12 +276,15 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
         <input type="text" id="shareHint" placeholder="例如：我们常用的那个密码…">
         <label style="font-size:0.75rem;color:var(--dim)">🎨 Era 色块密码 — 截图发微信</label>
         <div style="text-align:center"><canvas id="eraGridCanvas" style="width:100%;max-width:340px;border-radius:8px;image-rendering:pixelated"></canvas></div>
-        <div id="shareLink" style="word-break:break-all;font-size:0.65rem;color:var(--accent);background:rgba(0,0,0,0.3);padding:6px;border-radius:var(--rs);border:1px solid var(--border);max-height:36px;overflow-y:auto">生成中…</div>
-        <div class="modal-btns" style="flex-direction:column">
-            <button class="btn btn-copy" onclick="downloadEraGrid()" style="width:100%;justify-content:center">📥 保存色块图片</button>
-            <div style="display:flex;gap:8px">
-                <button class="btn btn-outline" onclick="closeShareModal()" style="flex:1;justify-content:center">关闭</button>
-                <button class="btn btn-primary" onclick="copyShareLink()" style="flex:1;justify-content:center">📋 复制链接</button>
+        <div id="shareLink">生成中…</div>
+        <div class="modal-btns">
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="copyEraGridToClipboard()">📋 复制到剪贴板</button>
+                <button class="btn btn-outline" onclick="downloadEraGrid()">📥 保存到相册</button>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-outline" onclick="closeShareModal()">关闭</button>
+                <button class="btn btn-primary" onclick="copyShareLink()">📋 复制链接</button>
             </div>
         </div>
     </div>
@@ -309,14 +329,96 @@ async function doDecrypt(){
     try{const k=await dk(gp()),r=Uint8Array.from(atob(b),c=>c.charCodeAt(0)),p=await crypto.subtle.decrypt({name:'AES-GCM',iv:r.slice(0,NS)},k,r.slice(NS));document.getElementById('plainOutput').value=new TextDecoder().decode(p);uc();t('✅ 解密成功')}catch(e){t(e.name==='OperationError'?'❌ 密码错误':'❌ '+e.message)}
 }
 function gp(){return document.getElementById('password').value}
-// ---- 📊 Password strength meter ----
+// ---- 📊 Password strength meter (entropy-based) ----
 function updatePwdStrength(){
     const p=gp(),bar=document.getElementById('pwdStrengthBar'),lbl=document.getElementById('pwdStrengthLabel');
     if(!p){bar.style.width='0';lbl.textContent='';return}
-    let score=0;if(p.length>=8)score++;if(p.length>=14)score++;if(/[A-Z]/.test(p))score++;if(/[a-z]/.test(p))score++;if(/[0-9]/.test(p))score++;if(/[^A-Za-z0-9]/.test(p))score+=2;
-    const levels=[{w:'15%',c:'#ef4444',t:'🔓 纸糊的锁'},{w:'35%',c:'#f97316',t:'🔐 聊胜于无'},{w:'55%',c:'#eab308',t:'🔑 还行'},{w:'75%',c:'#22c55e',t:'🔒 靠谱'},{w:'90%',c:'#10b981',t:'🛡️ 很强'},{w:'100%',c:'#a78bfa',t:'🔮 量子计算机也得算几年'}];
-    const lv=levels[Math.min(score,levels.length-1)];
-    bar.style.width=lv.w;bar.style.background=lv.c;lbl.textContent=lv.t;lbl.style.color=lv.c;
+
+    // 1. Count distinct chars per category -> effective pool size
+    const low=p.match(/[a-z]/g)||[], up=p.match(/[A-Z]/g)||[];
+    const dig=p.match(/[0-9]/g)||[], sp=p.match(/[^A-Za-z0-9]/g)||[];
+    const distLow=new Set(low).size, distUp=new Set(up).size;
+    const distDig=new Set(dig).size, distSp=new Set(sp).size;
+    const poolSize=Math.max(distLow+distUp+distDig+distSp,2);
+
+    // 2. Base Shannon entropy: log2(pool) × length
+    let entropy=Math.log2(poolSize)*p.length;
+
+    // 3. Penalty multipliers (1.0 = no penalty)
+    let penalty=1.0;
+
+    // --- Repeat penalty: 3+ identical chars in a row
+    const repeats=p.match(/(.)\1\1+/g)||[];
+    for(const r of repeats) penalty-=Math.min(r.length*0.04,0.15);
+    if(/(.)\1\1\1\1/.test(p)) penalty-=0.1; // 5+ same char
+
+    // --- Sequential penalty: abc, 123, cba, 987 etc
+    let seqHits=0;
+    const pl=p.toLowerCase();
+    for(let i=0;i<pl.length-2;i++){
+        const a=pl.charCodeAt(i),b=pl.charCodeAt(i+1),c=pl.charCodeAt(i+2);
+        if(Math.abs(a-b)===1&&Math.abs(b-c)===1&&a-b===b-c) seqHits++;
+    }
+    penalty-=Math.min(seqHits*0.06,0.25);
+
+    // --- Keyboard walk penalty
+    const kBrd=['qwertyuiop','asdfghjkl','zxcvbnm','1234567890','qwertzuiop','azertyuiop'];
+    for(const row of kBrd){
+        for(let i=0;i<row.length-2;i++){
+            const seg=row.substring(i,i+3), rev=seg.split('').reverse().join('');
+            if(pl.includes(seg)||pl.includes(rev)){penalty-=0.08;break;}
+        }
+    }
+
+    // --- Single-class penalty
+    const classes=[low.length>0,up.length>0,dig.length>0,sp.length>0].filter(Boolean).length;
+    if(classes===1) penalty-=0.35;
+    else if(classes===2&&p.length<10) penalty-=0.12;
+
+    // --- Common dictionary / pattern penalty (graded)
+    const dict=['password','admin','user','login','qwerty','abc123','123456','letmein',
+        'monkey','dragon','master','welcome','sunshine','princess','football','iloveyou',
+        'trustno1','12345678','123456789','000000','111111','secret','changeme',
+        'passw0rd','p@ssword','p@ssw0rd','admin123','root','guest','test'];
+    for(const w of dict){
+        if(pl===w){penalty-=0.5;break;}              // exact case-insensitive match
+        if(pl.startsWith(w)||pl.endsWith(w)){penalty-=0.28;break;} // prefix/suffix
+        if(pl.includes(w)){penalty-=0.18;break;}     // substring
+    }
+
+    // --- Short password penalty (exponential)
+    if(p.length<8) penalty-=Math.pow(8-p.length,1.5)*0.06;
+    if(p.length<5) penalty-=0.2;
+
+    // --- Date/year suffix penalty
+    if(/(19|20)\d{2}$/.test(p)) penalty-=0.15;
+    if(/(123|1234|12345|!+|@+|#+)$/.test(p)) penalty-=0.08;
+
+    // --- Leet-speak penalty (simple substitution patterns)
+    const leetPat=/[pP][@4][s5\$][s5\$][wW][0o][rR][dD]/;
+    if(leetPat.test(p)) penalty-=0.35;
+
+    penalty=Math.max(penalty,0.05);
+    entropy*=penalty;
+
+    // 4. Map entropy to 6 levels
+    // With PBKDF2-600K, even ~40 bits is quite decent
+    const thresholds=[18,28,40,54,70,90];
+    let lvl=thresholds.findIndex(t=>entropy<t);
+    if(lvl<0) lvl=5;
+
+    const levels=[
+        {w:'12%',c:'#ef4444',t:'🔓 纸糊的锁 — 秒破'},
+        {w:'28%',c:'#f97316',t:'🔐 聊胜于无 — 分钟级'},
+        {w:'48%',c:'#eab308',t:'🔑 还行 — 小时级'},
+        {w:'66%',c:'#22c55e',t:'🔒 靠谱 — 数月级'},
+        {w:'84%',c:'#10b981',t:'🛡️ 很强 — 年级'},
+        {w:'100%',c:'#a78bfa',t:'🔮 量子来了也得算几年'}
+    ];
+    const lv=levels[lvl];
+    bar.style.width=lv.w;bar.style.background=lv.c;
+    lbl.textContent=lv.t+' ('+Math.round(entropy)+' bits)';
+    lbl.style.color=lv.c;
 }
 // ---- 👻 Incognito mode ----
 let incogMode=false;
@@ -327,15 +429,15 @@ function toggleIncog(){
 }
 function isIncog(){return incogMode}
 
-// Password history (last 10)
+// Password history (last 20, scroll wheel)
 function loadPwdHistory(){try{return JSON.parse(localStorage.getItem('swiftcrypto_pwds')||'[]')}catch{return[]}}
-function savePwdHistory(pwd){if(isIncog())return;if(!pwd)return;let h=loadPwdHistory();h=h.filter(p=>p!==pwd);h.unshift(pwd);if(h.length>10)h.length=10;localStorage.setItem('swiftcrypto_pwds',JSON.stringify(h));renderPwdHistory()}
+function savePwdHistory(pwd){if(isIncog())return;if(!pwd)return;let h=loadPwdHistory();h=h.filter(p=>p!==pwd);h.unshift(pwd);if(h.length>20)h.length=20;localStorage.setItem('swiftcrypto_pwds',JSON.stringify(h));renderPwdHistory()}
 function clearPwdHistory(){localStorage.removeItem('swiftcrypto_pwds');renderPwdHistory();t('🗑 密码历史已清空')}
 function togglePwdHistory(){const el=document.getElementById('pwdHistory');el.style.display=el.style.display==='none'?'':'none';if(el.style.display!=='none')renderPwdHistory()}
 function renderPwdHistory(){
     const h=loadPwdHistory(),items=document.getElementById('pwdHistoryItems'),list=document.getElementById('pwdHistoryList');
-    if(h.length===0){items.innerHTML='<span style="font-size:0.65rem;color:var(--dim)">暂无记录</span>';list.innerHTML='';return}
-    items.innerHTML=h.map((p,i)=>`<div style="display:flex;align-items:center;gap:4px;padding:3px 0;cursor:pointer;font-size:0.72rem;color:var(--text)" onclick="usePwdHistory('${eh(p)}')"><span style="color:var(--dim);font-size:0.6rem">${i+1}.</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${eh(p)}</span></div>`).join('');
+    if(h.length===0){items.innerHTML='<div style="padding:10px;text-align:center;font-size:0.65rem;color:var(--dim)">暂无记录</div>';list.innerHTML='';return}
+    items.innerHTML=h.map((p,i)=>`<div style="display:flex;align-items:center;gap:6px;padding:6px 10px;cursor:pointer;font-size:0.75rem;color:var(--text);scroll-snap-align:start;transition:background .12s;line-height:1.3" onclick="usePwdHistory('${eh(p)}')" onmouseenter="this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.background='transparent'"><span style="color:var(--dim);font-size:0.6rem;width:16px;text-align:right;flex-shrink:0">${i+1}.</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${eh(p)}</span><span style="font-size:0.55rem;color:var(--dim);flex-shrink:0">#${h.length-i}</span></div>`).join('');
     list.innerHTML=h.map(p=>`<option value="${eh(p)}">`).join('');
 }
 function usePwdHistory(pwd){document.getElementById('password').value=pwd;document.getElementById('password').type='text';document.getElementById('togglePwd').textContent='🙈';document.getElementById('pwdHistory').style.display='none';t('🔐 已填入: '+pwd.slice(0,12)+(pwd.length>12?'…':''))}
@@ -377,7 +479,15 @@ function setTheme(){
 function prevTheme(){themeIdx=(themeIdx-1+THEMES.length)%THEMES.length;setTheme();}
 function nextTheme(){themeIdx=(themeIdx+1)%THEMES.length;setTheme();}
 function updateBgOpacity(v){
-    document.body.style.opacity=v/100;document.getElementById('bgOpacityVal').textContent=v+'%';
+    // Black overlay on ::before: 0% → overlay opacity 1 (fully black), 100% → overlay opacity 0 (gradient visible)
+    let style = document.getElementById('bgOverlayStyle');
+    if(!style){
+        style = document.createElement('style');
+        style.id = 'bgOverlayStyle';
+        document.head.appendChild(style);
+    }
+    style.textContent = 'body::before{opacity:'+(1-v/100)+'}';
+    document.getElementById('bgOpacityVal').textContent=v+'%';
 }
 
 // Lyrics Picker (full embedded data, custom selects)
@@ -608,7 +718,7 @@ const ERA_NAMES=['Red','Fearless','Debut','1989','Speak Now','Evermore','Lover',
 function renderEraGrid(){
     const b64=document.getElementById('cipherOutput').value;
     const cv=document.getElementById('eraGridCanvas');if(!cv||!b64)return;
-    const COLS=16,CELL=24,GAP=2,PAD=8,REF_H=CELL+8;
+    const COLS=16,CELL=16,GAP=2,PAD=8,REF_H=CELL+8;
     const cells=[];for(const c of b64){const i=B64.indexOf(c);if(i>=0){cells.push(i>>3,i&7)}}
     const rows=Math.ceil(cells.length/COLS);
     cv.width=COLS*(CELL+GAP)+GAP+PAD*2;
@@ -626,6 +736,22 @@ function renderEraGrid(){
         const col=i%COLS,row=Math.floor(i/COLS);
         ctx.fillStyle=ERA_COLORS[cells[i]];
         ctx.fillRect(PAD+col*(CELL+GAP)+GAP,REF_H+PAD+row*(CELL+GAP)+GAP,CELL,CELL);
+    }
+}
+async function copyEraGridToClipboard(){
+    const cv=document.getElementById('eraGridCanvas');
+    if(!cv)return;
+    try{
+        // Clipboard API with image/png (Chrome 76+, Safari 16+, Edge 79+)
+        const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
+        if(!blob){throw new Error('Canvas toBlob failed');}
+        await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);
+        t('✅ 图片已复制！去微信/QQ 粘贴即可');
+    }catch(e){
+        // Fallback: browser doesn't support image clipboard, download instead
+        console.warn('Clipboard image write failed, fallback to download:',e);
+        downloadEraGrid();
+        t('⚠️ 剪贴板不支持图片，已改为保存到相册');
     }
 }
 function downloadEraGrid(){
@@ -695,15 +821,15 @@ function decodeEraGrid(){
         const maxDist=Math.max(minPairDist*0.45,5000);
         const darkestBg=Math.min(...calibratedRGB.map(c=>c[0]+c[1]+c[2]))*0.15;
         // ---- Step 3: Decode using calibrated positions & colors ----
-        const dataStartY=refY+swatchW+8; // center of first data row (= ref center + cell + padding)
+        const dataStartY=refY+swatchW+Math.round(swatchW/2); // center of first data row
         const gridX=offsetX+cellGap;
         const sampleCell=(col,row)=>{
             const cx=gridX+col*(cellW+cellGap)+Math.floor(cellW/2);
             const cy=dataStartY+row*(cellW+cellGap);
             if(cx<2||cy<2||cx>=W-2||cy>=H-2)return -1;
             let sr=0,sg=0,sb=0,n=0;
-            for(let dx=-3;dx<=3;dx++)for(let dy=-3;dy<=3;dy++){
-                const w=4-Math.abs(dx)-Math.abs(dy);if(w<=0)continue;
+            for(let dx=-2;dx<=2;dx++)for(let dy=-2;dy<=2;dy++){
+                const w=3-Math.abs(dx)-Math.abs(dy);if(w<=0)continue;
                 const px=cx+dx,py=cy+dy;
                 if(px>=0&&py>=0&&px<W&&py<H){const d=ctx.getImageData(px,py,1,1).data;sr+=d[0]*w;sg+=d[1]*w;sb+=d[2]*w;n+=w;}
             }
