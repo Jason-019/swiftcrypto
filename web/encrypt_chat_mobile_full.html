@@ -797,12 +797,12 @@ async function copyShareLink(){
 function checkShareLink(){
     const hash=location.hash.slice(1);if(!hash)return;
     const params=new URLSearchParams(hash);
-    const c=params.get('c'),h=params.get('h');
+    const c=params.get('c'),h=params.get('h'); // Already decoded by URLSearchParams
     if(c){
-        document.getElementById('cipherInput').value=decodeURIComponent(c);
+        document.getElementById('cipherInput').value=c;
         switchTab('dec');
         if(h){
-            document.getElementById('pwdHintText').textContent='密码提示：'+decodeURIComponent(h);
+            document.getElementById('pwdHintText').textContent='密码提示：'+h;
             document.getElementById('pwdHint').style.display='';
             t('📨 收到分享密文！（密码提示已显示）')
         }else t('📨 收到分享密文！')
