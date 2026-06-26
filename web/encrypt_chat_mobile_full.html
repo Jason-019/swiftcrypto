@@ -1285,16 +1285,16 @@ async function stListen(){
             if(state==='TONE'){
                 if(toneActive){
                     toneVotes[bestFreq]=(toneVotes[bestFreq]||0)+1;toneReads++;
+                    stUpdateVisual(bestFreq); // Smooth real-time visual
                 }else{
                     // Tone ended — record the winner
-                    if(toneReads>=2){ // Need at least 2 readings to be confident
+                    if(toneReads>=2){
                         let winner=-1,winnerVotes=0;
                         for(const[f,c]of Object.entries(toneVotes)){if(c>winnerVotes){winnerVotes=c;winner=parseInt(f);}}
                         if(winner>=0&&winnerVotes>=toneReads*0.5&&(winner!==lastRecorded||now-lastRecordTime>minGapMs)){
                             _stDetected.push(winner);
                             lastRecorded=winner;lastRecordTime=now;
                             stStatus('🎤 '+ST_NOTE_NAMES[winner]+' ('+_stDetected.length+' 符号, '+toneReads+' 采样)');
-                            stUpdateVisual(winner);
                         }
                     }
                     state='IDLE';toneVotes={};toneReads=0;
