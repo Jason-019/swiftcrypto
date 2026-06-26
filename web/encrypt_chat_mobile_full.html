@@ -782,7 +782,8 @@ function openShareModal(){
     const b64=document.getElementById('cipherOutput').value;
     if(!b64)return t('⚠️ 请先生成密文');
     const hint=document.getElementById('shareHint').value.trim()||'';
-    const url=location.origin+location.pathname+'#c='+encodeURIComponent(b64)+(hint?'&h='+encodeURIComponent(hint):'');
+    const base=location.origin==='null'||location.protocol==='file:'?location.href.split('#')[0]:location.origin+location.pathname;
+    const url=base+'#c='+encodeURIComponent(b64)+(hint?'&h='+encodeURIComponent(hint):'');
     document.getElementById('shareLink').textContent=url;
     renderEraGrid();
     document.getElementById('shareModal').classList.add('show');
