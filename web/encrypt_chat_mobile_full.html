@@ -818,10 +818,17 @@ function setDeviceNickname(devId,nick){const nicks=getNicknames();nicks[devId]=n
 function promptNickname(devId){const cur=getDeviceNickname(devId);const nick=prompt('为设备 '+devId+' 设置备注:',cur||'');if(nick!==null)setDeviceNickname(devId,nick.trim())}
 function getChatKey(){return 'swiftcrypto_chat_all'} // All messages in one chat, distinguished by device ID
 function loadChat(){
-    try{const d=localStorage.getItem(getChatKey());if(d)chatMsgs=JSON.parse(d);else chatMsgs=[]}catch{chatMsgs=[]}
+    try{
+        const d=localStorage.getItem(getChatKey());
+        if(d){const parsed=JSON.parse(d);if(Array.isArray(parsed))chatMsgs=parsed;else chatMsgs=[]}
+        else chatMsgs=[];
+    }catch(e){chatMsgs=[];console.warn('Chat load failed:',e)}
     renderChat();
 }
-function saveChat(){if(isIncog())return;try{localStorage.setItem(getChatKey(),JSON.stringify(chatMsgs))}catch{}}
+function saveChat(){
+    if(isIncog())return;
+    try{localStorage.setItem(getChatKey(),JSON.stringify(chatMsgs))}catch(e){console.warn('Chat save failed:',e)}
+}
 function renderChat(){
     const area=document.getElementById('chatArea');
     if(chatMsgs.length===0){
@@ -1108,7 +1115,10 @@ function decodeEraGrid(){
     img.src=URL.createObjectURL(file);
 }
 // ---- 👻 Incognito cleanup on exit ----
-window.addEventListener('beforeunload',function(){if(isIncog()){localStorage.clear()}});
+window.addEventListener('beforeunload',function(){
+    saveChat(); // Always persist chat before closing
+    if(isIncog()){localStorage.clear()}
+});
 
 // Init
 loadChat();checkShareLink();initDeviceName();setTheme();updateBgOpacity(100);uc();renderPwdHistory();
