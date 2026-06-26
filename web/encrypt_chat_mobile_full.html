@@ -112,7 +112,11 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
     opacity:0;pointer-events:none;transition:opacity .3s}
 .toast.show{opacity:1}
 /* Emoji cipher mode */
-.emoji-cipher{font-size:1.25rem;line-height:1.8;word-break:break-all;letter-spacing:2px;min-height:60px;padding:12px;border-radius:var(--rs);background:rgba(0,0,0,0.25);border:1px solid var(--border);user-select:all}
+.emoji-cipher{font-size:1.25rem;line-height:1.8;word-break:break-all;letter-spacing:2px;min-height:60px;max-height:180px;overflow-y:auto;padding:12px;border-radius:var(--rs);background:rgba(0,0,0,0.25);border:1px solid var(--border);user-select:all;
+    scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.15) transparent}
+.emoji-cipher::-webkit-scrollbar{width:8px}
+.emoji-cipher::-webkit-scrollbar-track{background:transparent}
+.emoji-cipher::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:4px}
 /* Share modal */
 #shareModal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);justify-content:center;align-items:flex-end}
 #shareModal.show{display:flex}
@@ -687,9 +691,9 @@ function toggleEmojiMode(){
     if(emojiMode){
         const b64=ta.value;if(!b64)return t('⚠️ 请先生成密文');
         ec.textContent=cipherToEmoji(b64);ta.style.display='none';ec.style.display='block';
-        btn.innerHTML='🔤 文本';btn.style.color='#fbbf24';
+        btn.textContent='🔤 文本';btn.style.color='#fbbf24';
     }else{
-        ta.style.display='';ec.style.display='none';btn.innerHTML='🎭 Emoji';btn.style.color='';
+        ta.style.display='';ec.style.display='none';btn.textContent='🎭 Emoji';btn.style.color='';
     }
 }
 function updateEmojiDisplay(){
