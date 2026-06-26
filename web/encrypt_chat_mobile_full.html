@@ -971,7 +971,7 @@ function renderEraGrid(){
     cv.width=COLS*(CELL+GAP)+GAP+PAD*2;
     cv.height=rows*(CELL+GAP)+GAP+REF_H+PAD*2;
     const ctx=cv.getContext('2d');
-    ctx.fillStyle='#111';ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.fillStyle='#222';ctx.fillRect(0,0,cv.width,cv.height);
     // ---- Reference swatches (large enough to sample even after compression) ----
     const refX=PAD,refY=PAD+4,refW=CELL,refH=CELL-4;
     for(let i=0;i<8;i++){
