@@ -205,7 +205,7 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
 
 <div class="pwd-row" style="flex-direction:column;gap:6px">
     <div style="display:flex;gap:6px;width:100%">
-        <input type="password" id="password" placeholder="共享密码…" autocomplete="off" oninput="updatePwdStrength();checkPwdChange()" style="flex:1">
+        <input type="password" id="password" placeholder="共享密码…" autocomplete="off" oninput="updatePwdStrength()" style="flex:1">
         <button class="icon-btn" id="togglePwd" onclick="togglePwd()">👁</button>
         <button class="icon-btn" onclick="clearPassword()" title="清除密码" style="color:var(--dim);font-size:0.75rem">✕</button>
     </div>
@@ -627,7 +627,7 @@ function clearPassword(){
 }
 function autoSavePwd(){const p=gp();if(p)savePwdHistory(p);}
 function togglePwd(){const e=document.getElementById('password'),b=document.getElementById('togglePwd');if(e.type==='password'){e.type='text';b.textContent='🙈'}else{e.type='password';b.textContent='👁'}}
-function switchTab(tab){document.querySelectorAll('.tab,.panel').forEach(e=>e.classList.remove('active'));if(tab==='enc'){document.querySelector('.tab:nth-child(1)').classList.add('active');document.getElementById('panelEnc').classList.add('active')}else if(tab==='dec'){document.querySelector('.tab:nth-child(2)').classList.add('active');document.getElementById('panelDec').classList.add('active')}else{document.querySelector('.tab:nth-child(3)').classList.add('active');document.getElementById('panelChat').classList.add('active');checkPwdChange();renderChat()}}
+function switchTab(tab){document.querySelectorAll('.tab,.panel').forEach(e=>e.classList.remove('active'));if(tab==='enc'){document.querySelector('.tab:nth-child(1)').classList.add('active');document.getElementById('panelEnc').classList.add('active')}else if(tab==='dec'){document.querySelector('.tab:nth-child(2)').classList.add('active');document.getElementById('panelDec').classList.add('active')}else{document.querySelector('.tab:nth-child(3)').classList.add('active');document.getElementById('panelChat').classList.add('active');renderChat()}}
 function t(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
 function clearArea(id){document.getElementById(id).value='';uc()}
 async function copyText(id){let v;if(id==='cipherOutput'&&emojiMode){v=document.getElementById('emojiCipher').textContent}else{v=document.getElementById(id).value}if(!v)return t('⚠️ 无内容');try{await navigator.clipboard.writeText(v);t('✅ 已复制')}catch{document.getElementById(id).select();document.execCommand('copy');t('✅ 已复制')}}
@@ -793,7 +793,7 @@ function checkShareLink(){
 document.getElementById('shareModal').addEventListener('click',function(e){if(e.target===this)closeShareModal()});
 
 // ========== 💬 密语聊天模式 ==========
-let chatMsgs=[],_lastPwdHash='',_deviceName='',_deviceId='';
+let chatMsgs=[],_deviceName='',_deviceId='';
 function getDeviceId(){
     if(!_deviceId){
         _deviceId=localStorage.getItem('swiftcrypto_devid');
@@ -816,21 +816,12 @@ function getNicknames(){try{return JSON.parse(localStorage.getItem('swiftcrypto_
 function getDeviceNickname(devId){const nicks=getNicknames();return nicks[devId]||'';}
 function setDeviceNickname(devId,nick){const nicks=getNicknames();nicks[devId]=nick;localStorage.setItem('swiftcrypto_nicks',JSON.stringify(nicks));renderChat();}
 function promptNickname(devId){const cur=getDeviceNickname(devId);const nick=prompt('为设备 '+devId+' 设置备注:',cur||'');if(nick!==null)setDeviceNickname(devId,nick.trim())}
-function getChatKey(){
-    const pw=gp();if(!pw)return 'swiftcrypto_chat_default';
-    let h=0;for(let i=0;i<pw.length;i++)h=((h<<5)-h+pw.charCodeAt(i))|0;
-    return 'swiftcrypto_chat_'+((h>>>0).toString(36));
-}
+function getChatKey(){return 'swiftcrypto_chat_all'} // All messages in one chat, distinguished by device ID
 function loadChat(){
-    const key=getChatKey();_lastPwdHash=key;
-    try{const d=localStorage.getItem(key);if(d)chatMsgs=JSON.parse(d);else chatMsgs=[]}catch{chatMsgs=[]}
+    try{const d=localStorage.getItem(getChatKey());if(d)chatMsgs=JSON.parse(d);else chatMsgs=[]}catch{chatMsgs=[]}
     renderChat();
 }
 function saveChat(){if(isIncog())return;try{localStorage.setItem(getChatKey(),JSON.stringify(chatMsgs))}catch{}}
-function checkPwdChange(){
-    const cur=getChatKey();
-    if(cur!==_lastPwdHash){loadChat();t('🔐 已切换到密码: '+gp().slice(0,8)+(gp().length>8?'…':''))}
-}
 function renderChat(){
     const area=document.getElementById('chatArea');
     if(chatMsgs.length===0){
@@ -862,7 +853,6 @@ function renderChat(){
     else stopChatSDWatch();
 }
 async function chatSend(){
-    checkPwdChange();
     const input=document.getElementById('chatInput'),text=input.value.trim();
     if(!text)return t('请输入消息');
     const pw=gp();if(!pw)return t('请先设置共享密码');
@@ -885,7 +875,6 @@ async function chatSend(){
     }catch(e){t('❌ '+e.message)}
 }
 async function chatReceive(){
-    checkPwdChange();
     let b64=document.getElementById('chatRecvInput').value.trim();
     if(!b64)return t('请先粘贴对方的密文');
     if(isEmojiCipher(b64)){b64=emojiToCipher(b64);document.getElementById('chatRecvInput').value=b64;t('🎭 已识别Emoji密文')}
