@@ -386,6 +386,7 @@ function clampSD(){
     let h=parseInt(document.getElementById('sdH').value)||0;
     let m=parseInt(document.getElementById('sdM').value)||0;
     let s=parseInt(document.getElementById('sdS').value)||0;
+    const origH=h,origM=m,origS=s;
     if(m<0)m=0;if(m>59)m=59;
     if(s<0)s=0;if(s>59)s=59;
     if(h<0)h=0;if(h>71)h=71;
@@ -396,6 +397,12 @@ function clampSD(){
     document.getElementById('sdH').value=h;
     document.getElementById('sdM').value=m;
     document.getElementById('sdS').value=s;
+    // Show toast if clamped
+    if(origH!==h||origM!==m||origS!==s){
+        const origFmt=(origH?origH+'时':'')+(origM?origM+'分':'')+origS+'秒';
+        const clampFmt=(h?h+'时':'')+(m?m+'分':'')+s+'秒';
+        t('⏱ 焚毁时间已从 '+origFmt+' 调整为 '+clampFmt+'（范围10秒~71时59分59秒）');
+    }
 }
 function getSDMeta(){
     if(!document.getElementById('sdEnabled').checked)return '';
