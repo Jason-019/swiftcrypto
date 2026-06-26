@@ -1221,13 +1221,20 @@ function stStopPlayback(){
 // ---- Audio reception (microphone → FFT → frequency detection) ----
 async function stListen(){
     if(_stListening){stStopListen();return;}
+    // Clear previous results
+    document.getElementById('stOutput').value='';
+    stInitCanvas();
+    stProgress(0);
+    _stDetected=[];
     try{
         if(!_stAudioCtx)_stAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
         const ctx=_stAudioCtx;
         _stStream=await navigator.mediaDevices.getUserMedia({audio:true});
         const src=ctx.createMediaStreamSource(_stStream);
         const analyser=ctx.createAnalyser();
-        analyser.fftSize=8192;analyser.smoothingTimeConstant=0.3;
+        analyser.fftSize=4096; // 93ms window at 44.1kHz, good time resolution
+        analyser.smoothingTimeConstant=0; // No smoothing, instant response
+        analyser.minDecibels=-90;analyser.maxDecibels=-10;
         src.connect(analyser);
         _stListening=true;
         document.getElementById('stListenBtn').textContent='⏹ 停止接收';
@@ -1238,34 +1245,36 @@ async function stListen(){
 
         _stDetected=[];
         const buf=new Float32Array(analyser.fftSize);
-        let lastDetect=-1;
         const sampleRate=ctx.sampleRate;
+        const binWidth=sampleRate/analyser.fftSize; // ~10.8Hz per bin
+        const halfBin=Math.max(2,Math.round(20/binWidth)); // ±20Hz tolerance (~2 bins)
+        let lastDetect=-1,lastDetectTime=0;
+        const minGapMs=ST_SYM_LEN*0.6; // Minimum 72ms between distinct symbols
 
         const poll=()=>{
             if(!_stListening)return;
-            // Use FFT bin power to detect frequencies
             analyser.getFloatFrequencyData(buf);
             let bestFreq=-1,bestP=-Infinity;
             for(let i=0;i<8;i++){
                 const targetFreq=ST_FREQS[i];
                 const k=Math.round(analyser.fftSize*targetFreq/sampleRate);
                 if(k<1||k>=analyser.fftSize)continue;
-                // Average power around the target bin
+                // Average power around target bin
                 let sum=0,n=0;
-                const halfBin=Math.max(1,Math.floor(analyser.fftSize*1.5/sampleRate));
-                for(let b=Math.max(0,k-halfBin);b<Math.min(analyser.fftSize,k+halfBin);b++){sum+=buf[b];n++;}
+                for(let b=Math.max(0,k-halfBin);b<Math.min(analyser.fftSize,k+halfBin+1);b++){sum+=buf[b];n++;}
                 const avgP=n>0?sum/n:-200;
                 if(avgP>bestP){bestP=avgP;bestFreq=i;}
             }
-            // Threshold: signal must be well above noise floor
-            if(bestP>-65&&bestFreq!==lastDetect&&bestFreq>=0){
+            // Adaptive threshold: detect if any frequency stands out
+            const now=Date.now();
+            if(bestP>-75&&bestFreq>=0&&(bestFreq!==lastDetect||now-lastDetectTime>minGapMs)){
                 _stDetected.push(bestFreq);
-                lastDetect=bestFreq;
-                stStatus('🎤 检测到: '+ST_NOTE_NAMES[bestFreq]+' ('+_stDetected.length+' 符号)');
-                stProgress(Math.min(100,_stDetected.length*2));
+                lastDetect=bestFreq;lastDetectTime=now;
+                stStatus('🎤 '+ST_NOTE_NAMES[bestFreq]+' ('+_stDetected.length+'/'+_stPlaySyms.length+' 符号)');
+                stProgress(Math.min(100,Math.floor(100*_stDetected.length/(_stPlaySyms.length||100))));
                 stUpdateVisual(bestFreq);
             }
-            _stPollTimer=setTimeout(poll,ST_GAP+ST_SYM_LEN/2);
+            _stPollTimer=setTimeout(poll,ST_SYM_LEN/2); // Poll every 60ms
         };
         poll();
     }catch(e){t('❌ 麦克风访问失败: '+e.message);stStatus('❌ '+e.message);}
