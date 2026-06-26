@@ -407,10 +407,10 @@ function clampSD(){
 function getSDMeta(){
     if(!document.getElementById('sdEnabled').checked)return '';
     clampSD();
-    const h=parseInt(document.getElementById('sdH').value)||0;
-    const m=parseInt(document.getElementById('sdM').value)||0;
-    const s=parseInt(document.getElementById('sdS').value)||10;
-    const exp=Date.now()+(h*3600+m*60+s)*1000;
+    const h=parseInt(document.getElementById('sdH').value);const H=isNaN(h)?0:h;
+    const m=parseInt(document.getElementById('sdM').value);const M=isNaN(m)?0:m;
+    const s=parseInt(document.getElementById('sdS').value);const S=isNaN(s)?0:s;
+    const exp=Date.now()+(H*3600+M*60+S)*1000;
     return '🔥'+exp+'|';
 }
 function fmtRemaining(ms){
