@@ -843,8 +843,9 @@ function renderChat(){
         if(m.role==='me'){
             devLabel=` · ${getDeviceName()}`;
         }else{
+            const devId=m.device||'???';
             const nick=getDeviceNickname(m.device);
-            const displayName=nick||m.senderName||m.device||'???';
+            const displayName=nick?`${devId} (${nick})`:devId;
             const hasNick=!!nick;
             devLabel=` · <span onclick="promptNickname('${eh(m.device||'')}')" style="cursor:pointer;border-bottom:1px dashed var(--dim)" title="${hasNick?'点击修改备注':'点击设置备注'}">${eh(displayName)}</span>`;
         }
