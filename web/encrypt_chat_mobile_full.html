@@ -795,18 +795,21 @@ async function copyShareLink(){
     try{await navigator.clipboard.writeText(url);t('✅ 链接已复制，发给朋友吧！')}catch{t('⚠️ 复制失败，请手动复制')}
 }
 function checkShareLink(){
-    const hash=location.hash.slice(1);if(!hash)return;
-    const params=new URLSearchParams(hash);
-    const c=params.get('c'),h=params.get('h'); // Already decoded by URLSearchParams
-    if(c){
-        document.getElementById('cipherInput').value=c;
-        switchTab('dec');
-        if(h){
-            document.getElementById('pwdHintText').textContent='密码提示：'+h;
-            document.getElementById('pwdHint').style.display='';
-            t('📨 收到分享密文！（密码提示已显示）')
-        }else t('📨 收到分享密文！')
-    }
+    try{
+        const hash=location.hash.slice(1);if(!hash)return;
+        const params=new URLSearchParams(hash);
+        const c=params.get('c'),h=params.get('h');
+        if(c){
+            document.getElementById('cipherInput').value=c;
+            switchTab('dec');
+            if(h){
+                const el=document.getElementById('pwdHint');
+                document.getElementById('pwdHintText').textContent='密码提示：'+h;
+                el.style.display='';
+                t('📨 收到分享密文！（密码提示已显示）')
+            }else t('📨 收到分享密文！')
+        }
+    }catch(e){console.warn('checkShareLink:',e)}
 }
 document.getElementById('shareModal').addEventListener('click',function(e){if(e.target===this)closeShareModal()});
 

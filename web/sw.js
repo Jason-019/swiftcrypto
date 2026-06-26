@@ -1,5 +1,5 @@
 // SwiftCrypto Service Worker — offline PWA support
-const CACHE_NAME = 'swiftcrypto-v1';
+const CACHE_NAME = 'swiftcrypto-v2';
 const ASSETS = [
   './encrypt_chat_mobile_full.html',
   './manifest.json'
