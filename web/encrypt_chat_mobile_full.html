@@ -1111,6 +1111,8 @@ function decodeEraGrid(){
             }
         }
         if(b64){
+            // Restore base64 padding stripped during encoding
+            while(b64.length%4)b64+='=';
             document.getElementById('cipherInput').value=b64;uc();
             document.getElementById('eraFileInput').value='';
             t('✅ 解码成功！'+b64.length+' 字符');
