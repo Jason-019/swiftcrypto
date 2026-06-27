@@ -1104,6 +1104,9 @@ function renderEraCard(){
     let b64=document.getElementById('cipherOutput').value;
     const cv=document.getElementById('eraCardCanvas');if(!cv||!b64)return;
     b64=encodeParity(b64);
+    // 追加 1 字符 XOR 校验和（2 个色块）
+    let cs=0;for(const c of b64){const i=B64.indexOf(c);if(i>=0)cs^=i;}
+    b64+=B64[cs&63];
     const COLS=16,CELL=16,GAP=2,PAD=10,REF_H=CELL+8;
     const cells=[];for(const c of b64){const i=B64.indexOf(c);if(i>=0){cells.push(i>>3,i&7)}}
     const rows=Math.ceil(cells.length/COLS);
@@ -1230,8 +1233,8 @@ function decodeEraGrid(){
             if(d<minPairDist)minPairDist=d;
         }
         // Adaptive thresholds with safety floors
-        const maxDist=Math.max(minPairDist*0.5,8000);
-        const darkestBg=Math.min(...calibratedRGB.map(c=>c[0]+c[1]+c[2]))*0.1;
+        const maxDist=Math.max(minPairDist*0.35,6000);
+        const darkestBg=Math.min(...calibratedRGB.map(c=>c[0]+c[1]+c[2]))*0.25;
         // ---- Step 3: Decode using calibrated positions & colors ----
         const dataStartY=refY+swatchW+Math.round(swatchW/2);
         const gridX=offsetX+cellGap;
@@ -1253,7 +1256,7 @@ function decodeEraGrid(){
                 const d=(r-calibratedRGB[i][0])**2+(g-calibratedRGB[i][1])**2+(b-calibratedRGB[i][2])**2;
                 if(d<bestD){secondD=bestD;bestD=d;bestI=i}else if(d<secondD)secondD=d;
             }
-            return (bestD<maxDist&&bestD*1.5<secondD)?bestI:-1;
+            return (bestD<maxDist&&bestD*2.0<secondD)?bestI:-1;
         };
         let b64='';let emptyRows=0;
         for(let row=0;;row++){
@@ -1269,6 +1272,16 @@ function decodeEraGrid(){
         if(b64){
             // XOR parity repair
             b64=decodeParity(b64);
+            // 校验和验证：最后一个字符是 XOR 校验
+            if(b64.length>1){
+                const csChar=b64.slice(-1),dataPart=b64.slice(0,-1);
+                let cs=0;for(const c of dataPart){const i=B64.indexOf(c);if(i>=0)cs^=i;}
+                if((cs&63)!==B64.indexOf(csChar)){
+                    t('⚠️ 校验和不匹配，可能有误读，请重新截图');
+                    document.getElementById('eraFileInput').value='';return;
+                }
+                b64=dataPart;
+            }
             // Restore base64 padding
             while(b64.length%4)b64+='=';
             document.getElementById('cipherInput').value=b64;uc();
