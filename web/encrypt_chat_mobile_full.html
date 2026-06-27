@@ -353,13 +353,13 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
         <h3>🔗 分享加密消息</h3>
         <label style="font-size:0.75rem;color:var(--dim)">密码提示（可选，不要直接填密码！）</label>
         <input type="text" id="shareHint" placeholder="例如：我们常用的那个密码…" oninput="updateShareLink()">
-        <label style="font-size:0.75rem;color:var(--dim)">🎨 Eras 色块密码 — 截图发微信</label>
-        <div style="text-align:center"><canvas id="eraGridCanvas" style="width:100%;max-width:340px;border-radius:8px;image-rendering:pixelated"></canvas></div>
+        <label style="font-size:0.75rem;color:var(--dim)">🎨 Eras 色块名片 — 截图发微信</label>
+        <div style="text-align:center"><canvas id="eraCardCanvas" style="width:100%;max-width:340px;border-radius:8px"></canvas></div>
         <div id="shareLink">生成中…</div>
         <div class="modal-btns">
             <div class="btn-row">
-                <button class="btn btn-primary" onclick="copyEraGridToClipboard()">📋 复制到剪贴板</button>
-                <button class="btn btn-outline" onclick="downloadEraGrid()">📥 保存到相册</button>
+                <button class="btn btn-primary" onclick="shareEraCard()">📋 复制名片</button>
+                <button class="btn btn-outline" onclick="saveEraCard()">📥 保存</button>
             </div>
             <div class="btn-row">
                 <button class="btn btn-outline" onclick="closeShareModal()">关闭</button>
@@ -819,7 +819,7 @@ function openShareModal(){
     const b64=document.getElementById('cipherOutput').value;
     if(!b64)return t('⚠️ 请先生成密文');
     document.getElementById('shareLink').textContent=buildShareUrl();
-    renderEraGrid();
+    renderEraCard();
     document.getElementById('shareModal').classList.add('show');
 }
 function closeShareModal(){document.getElementById('shareModal').classList.remove('show')}
@@ -1051,67 +1051,71 @@ function decodeParity(b64){
 // ---- 🎨 Era Color Grid share ----
 const ERA_COLORS=['#FFD60A','#FF9500','#34C759','#007AFF','#AF52DE','#5AC8FA','#FF2D55','#8E8E93'];
 const ERA_NAMES=['Gold','Fearless','Debut','1989','Speak Now','Evermore','Lover','Midnights'];
-function renderEraGrid(){
+function renderEraCard(){
     let b64=document.getElementById('cipherOutput').value;
-    const cv=document.getElementById('eraGridCanvas');if(!cv||!b64)return;
-    b64=encodeParity(b64); // Add XOR parity
-    const COLS=16,CELL=16,GAP=2,PAD=8,REF_H=CELL+8;
+    const cv=document.getElementById('eraCardCanvas');if(!cv||!b64)return;
+    b64=encodeParity(b64);
+    const COLS=16,CELL=16,GAP=2,PAD=10,REF_H=CELL+8;
     const cells=[];for(const c of b64){const i=B64.indexOf(c);if(i>=0){cells.push(i>>3,i&7)}}
     const rows=Math.ceil(cells.length/COLS);
-    cv.width=COLS*(CELL+GAP)+GAP+PAD*2;
-    cv.height=rows*(CELL+GAP)+GAP+REF_H+PAD*2;
+    const gridW=COLS*(CELL+GAP)+GAP+PAD*2;
+    const gridH=rows*(CELL+GAP)+GAP+REF_H+PAD*2;
+    // 名片卡：网格 + 标题 + 日期/主题
+    const cardW=gridW+32,cardH=gridH+80;
+    cv.width=cardW;cv.height=cardH;
     const ctx=cv.getContext('2d');
-    ctx.fillStyle='#222';ctx.fillRect(0,0,cv.width,cv.height);
-    // ---- Reference swatches (large enough to sample even after compression) ----
-    const refX=PAD,refY=PAD+4,refW=CELL,refH=CELL-4;
-    for(let i=0;i<8;i++){
-        ctx.fillStyle=ERA_COLORS[i];
-        ctx.fillRect(refX+i*(refW+GAP),refY,refW,refH);
-    }
-    // ---- Data cells ----
-    for(let i=0;i<cells.length;i++){
-        const col=i%COLS,row=Math.floor(i/COLS);
-        ctx.fillStyle=ERA_COLORS[cells[i]];
-        ctx.fillRect(PAD+col*(CELL+GAP)+GAP,REF_H+PAD+row*(CELL+GAP)+GAP,CELL,CELL);
-    }
-}
-async function copyEraGridToClipboard(){
-    const cv=document.getElementById('eraGridCanvas');
-    if(!cv)return;
-    try{
-        // Clipboard API with image/png (Chrome 76+, Safari 16+, Edge 79+)
-        const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
-        if(!blob){throw new Error('Canvas toBlob failed');}
-        await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);
-        t('✅ 图片已复制！去微信/QQ 粘贴即可');
-    }catch(e){
-        // Fallback: browser doesn't support image clipboard, download instead
-        console.warn('Clipboard image write failed, fallback to download:',e);
-        downloadEraGrid();
-        t('⚠️ 剪贴板不支持图片，已改为保存到相册');
-    }
-}
-function downloadEraGrid(){
-    const gridCv=document.getElementById('eraGridCanvas');
-    if(!gridCv)return;
-    const cardW=gridCv.width+40,cardH=gridCv.height+100;
-    const cv=document.createElement('canvas');cv.width=cardW;cv.height=cardH;
-    const ctx=cv.getContext('2d');
+    // 背景
     const grad=ctx.createLinearGradient(0,0,cardW,cardH);
     grad.addColorStop(0,'#1a1a2e');grad.addColorStop(0.5,'#16213e');grad.addColorStop(1,'#0f0f1a');
     ctx.fillStyle=grad;roundRect(ctx,0,0,cardW,cardH,16);ctx.fill();
     ctx.strokeStyle='rgba(167,139,250,0.5)';ctx.lineWidth=2;
-    roundRect(ctx,2,2,cardW-4,cardH-4,14);ctx.stroke();
-    ctx.drawImage(gridCv,Math.floor((cardW-gridCv.width)/2),50);
+    roundRect(ctx,1,1,cardW-2,cardH-2,16);ctx.stroke();
+    // 标题
     ctx.fillStyle='#a78bfa';ctx.font='bold 16px -apple-system,sans-serif';ctx.textAlign='center';
-    ctx.fillText('🔐 SwiftCrypto',cardW/2,28);
+    ctx.fillText('🔐 SwiftCrypto',cardW/2,26);
+    // 绘制色块网格（居中）
+    const offsetX=Math.floor((cardW-gridW)/2),offsetY=38;
+    // 参考色块行
+    const refX=offsetX+PAD,refY=offsetY+PAD+4,refW=CELL,refH=CELL-4;
+    for(let i=0;i<8;i++){
+        ctx.fillStyle=ERA_COLORS[i];
+        ctx.fillRect(refX+i*(refW+GAP),refY,refW,refH);
+    }
+    // 数据色块
+    for(let i=0;i<cells.length;i++){
+        const col=i%COLS,row=Math.floor(i/COLS);
+        ctx.fillStyle=ERA_COLORS[cells[i]];
+        ctx.fillRect(offsetX+PAD+col*(CELL+GAP)+GAP,offsetY+REF_H+PAD+row*(CELL+GAP)+GAP,CELL,CELL);
+    }
+    // 底部信息
     const now=new Date();
     ctx.fillStyle='rgba(255,255,255,0.35)';ctx.font='11px monospace';
-    ctx.fillText(now.toLocaleDateString('zh-CN')+' '+now.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}),cardW/2,gridCv.height+82);
-    ctx.fillText('🎨 '+document.getElementById('themeName').textContent+' · Era Cipher',cardW/2,gridCv.height+98);
-    const ts=now.toISOString().replace(/[-:]/g,'').slice(0,15);
+    ctx.fillText(now.toLocaleDateString('zh-CN')+' '+now.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}),cardW/2,cardH-28);
+    ctx.fillText('🎨 '+document.getElementById('themeName').textContent+' · Eras Cipher',cardW/2,cardH-12);
+}
+
+async function shareEraCard(){
+    const cv=document.getElementById('eraCardCanvas');
+    if(!cv)return;
+    try{
+        const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
+        if(!blob)throw new Error('toBlob failed');
+        await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);
+        t('✅ 名片已复制！去微信/QQ 粘贴即可');
+    }catch(e){
+        console.warn('Clipboard image write failed, fallback to download:',e);
+        saveEraCard();
+        t('⚠️ 剪贴板不支持图片，已改为保存');
+    }
+}
+
+function saveEraCard(){
+    const cv=document.getElementById('eraCardCanvas');
+    if(!cv)return;
+    const ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15);
     const a=document.createElement('a');a.download='swiftcrypto-'+ts+'.png';
-    a.href=cv.toDataURL('image/png');a.click();t('🎴 收藏卡已保存')
+    a.href=cv.toDataURL('image/png');a.click();
+    t('🎴 名片已保存');
 }
 function roundRect(ctx,x,y,w,h,r){
     ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
@@ -1131,7 +1135,7 @@ function decodeEraGrid(){
         // ---- Step 1: Auto-detect reference swatch row ----
         // Scan top 15% of image for 8 bright regions in a row
         let refY=-1,refXs=[],swatchW=0,swatchGap=0,leftEdge=0;
-        for(let y=4;y<H*0.15&&refY<0;y++){
+        for(let y=4;y<H*0.5&&refY<0;y++){
             const bright=[]; // runs of bright pixels
             let inBright=false,runStart=0;
             for(let x=0;x<W;x++){
