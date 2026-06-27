@@ -1,0 +1,1971 @@
+{
+  "version": 3,
+  "mode": "velocity_lsb",
+  "total_songs": 218,
+  "total_encodable_bits": 415703,
+  "avg_base64_per_song": 315,
+  "songs": {
+    "all_you_had_to_do_was_stay": {
+      "name": "All You Had To Do Was Stay",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - All You Had To Do Was Stay_L.mid",
+      "notes": 2139,
+      "encodable": 2139,
+      "bits": 2139,
+      "base64_chars": 353
+    },
+    "bad_blood": {
+      "name": "Bad Blood",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Bad Blood_L.mid",
+      "notes": 2144,
+      "encodable": 2144,
+      "bits": 2144,
+      "base64_chars": 354
+    },
+    "blank_space": {
+      "name": "Blank Space",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Blank Space_L.mid",
+      "notes": 2809,
+      "encodable": 2809,
+      "bits": 2809,
+      "base64_chars": 465
+    },
+    "clean": {
+      "name": "Clean",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Clean_L.mid",
+      "notes": 2380,
+      "encodable": 2380,
+      "bits": 2380,
+      "base64_chars": 394
+    },
+    "how_you_get_the_girl": {
+      "name": "How You Get The Girl",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - How You Get The Girl_L.mid",
+      "notes": 2382,
+      "encodable": 2382,
+      "bits": 2382,
+      "base64_chars": 394
+    },
+    "i_know_places": {
+      "name": "I Know Places",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - I Know Places_L.mid",
+      "notes": 1688,
+      "encodable": 1688,
+      "bits": 1688,
+      "base64_chars": 278
+    },
+    "i_wish_you_would": {
+      "name": "I Wish You Would",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - I Wish You Would_L.mid",
+      "notes": 2681,
+      "encodable": 2681,
+      "bits": 2681,
+      "base64_chars": 444
+    },
+    "is_it_over_now_": {
+      "name": "Is It Over Now_",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Is It Over Now__L.mid",
+      "notes": 2057,
+      "encodable": 2057,
+      "bits": 2057,
+      "base64_chars": 340
+    },
+    "new_romantics": {
+      "name": "New Romantics",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - New Romantics_L.mid",
+      "notes": 2179,
+      "encodable": 2179,
+      "bits": 2179,
+      "base64_chars": 360
+    },
+    "now_that_we_don_t_talk": {
+      "name": "Now That We Don_t Talk",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Now That We Don_t Talk_L.mid",
+      "notes": 1097,
+      "encodable": 1097,
+      "bits": 1097,
+      "base64_chars": 180
+    },
+    "out_of_the_woods": {
+      "name": "Out Of The Woods",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Out Of The Woods_L.mid",
+      "notes": 1863,
+      "encodable": 1863,
+      "bits": 1863,
+      "base64_chars": 307
+    },
+    "say_don_t_go": {
+      "name": "Say Don_t Go",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Say Don_t Go_L.mid",
+      "notes": 2251,
+      "encodable": 2251,
+      "bits": 2251,
+      "base64_chars": 372
+    },
+    "shake_it_off": {
+      "name": "Shake It Off",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Shake It Off_L.mid",
+      "notes": 2102,
+      "encodable": 2102,
+      "bits": 2102,
+      "base64_chars": 347
+    },
+    "slut_": {
+      "name": "Slut_",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Slut__L.mid",
+      "notes": 1024,
+      "encodable": 1024,
+      "bits": 1024,
+      "base64_chars": 168
+    },
+    "style": {
+      "name": "Style",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Style_L.mid",
+      "notes": 2000,
+      "encodable": 2000,
+      "bits": 2000,
+      "base64_chars": 330
+    },
+    "suburban_legends": {
+      "name": "Suburban Legends",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Suburban Legends_L.mid",
+      "notes": 1327,
+      "encodable": 1327,
+      "bits": 1327,
+      "base64_chars": 218
+    },
+    "sweeter_than_fiction": {
+      "name": "Sweeter Than Fiction",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Sweeter Than Fiction_L.mid",
+      "notes": 2031,
+      "encodable": 2031,
+      "bits": 2031,
+      "base64_chars": 335
+    },
+    "this_love": {
+      "name": "This Love",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - This Love_L.mid",
+      "notes": 1545,
+      "encodable": 1545,
+      "bits": 1545,
+      "base64_chars": 254
+    },
+    "welcome_to_new_york": {
+      "name": "Welcome To New York",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Welcome To New York_L.mid",
+      "notes": 2040,
+      "encodable": 2040,
+      "bits": 2040,
+      "base64_chars": 337
+    },
+    "wildest_dreams": {
+      "name": "Wildest Dreams",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Wildest Dreams_L.mid",
+      "notes": 1738,
+      "encodable": 1738,
+      "bits": 1738,
+      "base64_chars": 287
+    },
+    "wonderland": {
+      "name": "Wonderland",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - Wonderland_L.mid",
+      "notes": 2195,
+      "encodable": 2195,
+      "bits": 2195,
+      "base64_chars": 363
+    },
+    "you_are_in_love": {
+      "name": "You Are In Love",
+      "album": "1989",
+      "file": "midi/1989/Minnz Piano - You Are In Love_L.mid",
+      "notes": 2203,
+      "encodable": 2203,
+      "bits": 2203,
+      "base64_chars": 364
+    },
+    "_tis_the_damn_season": {
+      "name": "_Tis the Damn Season",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - _Tis the Damn Season_L.mid",
+      "notes": 2239,
+      "encodable": 2239,
+      "bits": 2239,
+      "base64_chars": 370
+    },
+    "champagne_problems": {
+      "name": "Champagne Problems",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Champagne Problems_L.mid",
+      "notes": 1880,
+      "encodable": 1880,
+      "bits": 1880,
+      "base64_chars": 310
+    },
+    "closure": {
+      "name": "Closure",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Closure_L.mid",
+      "notes": 1168,
+      "encodable": 1168,
+      "bits": 1168,
+      "base64_chars": 192
+    },
+    "coney_island": {
+      "name": "Coney Island",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Coney Island_L.mid",
+      "notes": 2239,
+      "encodable": 2239,
+      "bits": 2239,
+      "base64_chars": 370
+    },
+    "cowboy_like_me": {
+      "name": "Cowboy like Me",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Cowboy like Me_L.mid",
+      "notes": 1553,
+      "encodable": 1553,
+      "bits": 1553,
+      "base64_chars": 256
+    },
+    "dorothea": {
+      "name": "Dorothea",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Dorothea_L.mid",
+      "notes": 1312,
+      "encodable": 1312,
+      "bits": 1312,
+      "base64_chars": 216
+    },
+    "evermore": {
+      "name": "Evermore",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Evermore_L.mid",
+      "notes": 1560,
+      "encodable": 1560,
+      "bits": 1560,
+      "base64_chars": 257
+    },
+    "gold_rush": {
+      "name": "Gold Rush",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Gold Rush_L.mid",
+      "notes": 1750,
+      "encodable": 1750,
+      "bits": 1750,
+      "base64_chars": 289
+    },
+    "happiness": {
+      "name": "Happiness",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Happiness_L.mid",
+      "notes": 1624,
+      "encodable": 1624,
+      "bits": 1624,
+      "base64_chars": 268
+    },
+    "it_s_time_to_go": {
+      "name": "It_s Time to Go",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - It_s Time to Go_L.mid",
+      "notes": 1613,
+      "encodable": 1613,
+      "bits": 1613,
+      "base64_chars": 266
+    },
+    "ivy": {
+      "name": "Ivy",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Ivy_L.mid",
+      "notes": 1898,
+      "encodable": 1898,
+      "bits": 1898,
+      "base64_chars": 313
+    },
+    "long_story_short": {
+      "name": "Long Story Short",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Long Story Short_L.mid",
+      "notes": 1640,
+      "encodable": 1640,
+      "bits": 1640,
+      "base64_chars": 270
+    },
+    "marjorie": {
+      "name": "Marjorie",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Marjorie_L.mid",
+      "notes": 1712,
+      "encodable": 1712,
+      "bits": 1712,
+      "base64_chars": 282
+    },
+    "no_body__no_crime": {
+      "name": "No Body_ No Crime",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - No Body_ No Crime_L.mid",
+      "notes": 1623,
+      "encodable": 1623,
+      "bits": 1623,
+      "base64_chars": 267
+    },
+    "right_where_you_left_me": {
+      "name": "Right Where You Left Me",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Right Where You Left Me_L.mid",
+      "notes": 1895,
+      "encodable": 1895,
+      "bits": 1895,
+      "base64_chars": 313
+    },
+    "tolerate_it": {
+      "name": "Tolerate It",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Tolerate It_L.mid",
+      "notes": 1304,
+      "encodable": 1304,
+      "bits": 1304,
+      "base64_chars": 214
+    },
+    "willow": {
+      "name": "Willow",
+      "album": "Evermore",
+      "file": "midi/Evermore/Minnz Piano - Willow_L.mid",
+      "notes": 1849,
+      "encodable": 1849,
+      "bits": 1849,
+      "base64_chars": 305
+    },
+    "breathe": {
+      "name": "Breathe",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Breathe_L.mid",
+      "notes": 1916,
+      "encodable": 1916,
+      "bits": 1916,
+      "base64_chars": 316
+    },
+    "bye_bye_baby": {
+      "name": "Bye Bye Baby",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Bye Bye Baby_L.mid",
+      "notes": 2035,
+      "encodable": 2035,
+      "bits": 2035,
+      "base64_chars": 336
+    },
+    "change": {
+      "name": "Change",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Change_L.mid",
+      "notes": 1650,
+      "encodable": 1650,
+      "bits": 1650,
+      "base64_chars": 272
+    },
+    "come_in_with_the_rain": {
+      "name": "Come In With The Rain",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Come In With The Rain_L.mid",
+      "notes": 1591,
+      "encodable": 1591,
+      "bits": 1591,
+      "base64_chars": 262
+    },
+    "don_t_you": {
+      "name": "Don_t You",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Don_t You_L.mid",
+      "notes": 1443,
+      "encodable": 1443,
+      "bits": 1443,
+      "base64_chars": 237
+    },
+    "fearless": {
+      "name": "Fearless",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Fearless_L.mid",
+      "notes": 2182,
+      "encodable": 2182,
+      "bits": 2182,
+      "base64_chars": 361
+    },
+    "fifteen": {
+      "name": "Fifteen",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Fifteen_L.mid",
+      "notes": 2322,
+      "encodable": 2322,
+      "bits": 2322,
+      "base64_chars": 384
+    },
+    "forever___always": {
+      "name": "Forever _ Always",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Forever _ Always_L.mid",
+      "notes": 2138,
+      "encodable": 2138,
+      "bits": 2138,
+      "base64_chars": 353
+    },
+    "hey_stephen": {
+      "name": "Hey Stephen",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Hey Stephen_L.mid",
+      "notes": 2201,
+      "encodable": 2201,
+      "bits": 2201,
+      "base64_chars": 364
+    },
+    "jump_then_fall": {
+      "name": "Jump Then Fall",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Jump Then Fall_L.mid",
+      "notes": 1821,
+      "encodable": 1821,
+      "bits": 1821,
+      "base64_chars": 300
+    },
+    "love_story": {
+      "name": "Love Story",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Love Story_L.mid",
+      "notes": 2231,
+      "encodable": 2231,
+      "bits": 2231,
+      "base64_chars": 369
+    },
+    "mr__perfectly_fine": {
+      "name": "Mr_ Perfectly Fine",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Mr_ Perfectly Fine_L.mid",
+      "notes": 2596,
+      "encodable": 2596,
+      "bits": 2596,
+      "base64_chars": 430
+    },
+    "superstar": {
+      "name": "Superstar",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Superstar_L.mid",
+      "notes": 1698,
+      "encodable": 1698,
+      "bits": 1698,
+      "base64_chars": 280
+    },
+    "tell_me_why": {
+      "name": "Tell Me Why",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Tell Me Why_L.mid",
+      "notes": 1708,
+      "encodable": 1708,
+      "bits": 1708,
+      "base64_chars": 282
+    },
+    "that_s_when": {
+      "name": "That_s When",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - That_s When_L.mid",
+      "notes": 1362,
+      "encodable": 1362,
+      "bits": 1362,
+      "base64_chars": 224
+    },
+    "the_best_day": {
+      "name": "The Best Day",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - The Best Day_L.mid",
+      "notes": 1494,
+      "encodable": 1494,
+      "bits": 1494,
+      "base64_chars": 246
+    },
+    "the_other_side_of_the_door": {
+      "name": "The Other Side Of The Door",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - The Other Side Of The Door_L.mid",
+      "notes": 1774,
+      "encodable": 1774,
+      "bits": 1774,
+      "base64_chars": 293
+    },
+    "the_way_i_loved_you": {
+      "name": "The Way I Loved You",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - The Way I Loved You_L.mid",
+      "notes": 1558,
+      "encodable": 1558,
+      "bits": 1558,
+      "base64_chars": 257
+    },
+    "today_was_a_fairytale": {
+      "name": "Today Was A Fairytale",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Today Was A Fairytale_L.mid",
+      "notes": 1820,
+      "encodable": 1820,
+      "bits": 1820,
+      "base64_chars": 300
+    },
+    "untouchable": {
+      "name": "Untouchable",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - Untouchable_L.mid",
+      "notes": 2445,
+      "encodable": 2445,
+      "bits": 2445,
+      "base64_chars": 404
+    },
+    "we_were_happy": {
+      "name": "We Were Happy",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - We Were Happy_L.mid",
+      "notes": 1899,
+      "encodable": 1899,
+      "bits": 1899,
+      "base64_chars": 313
+    },
+    "white_horse": {
+      "name": "White Horse",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - White Horse_L.mid",
+      "notes": 1913,
+      "encodable": 1913,
+      "bits": 1913,
+      "base64_chars": 316
+    },
+    "you_all_over_me": {
+      "name": "You All Over Me",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - You All Over Me_L.mid",
+      "notes": 1676,
+      "encodable": 1676,
+      "bits": 1676,
+      "base64_chars": 276
+    },
+    "you_belong_with_me": {
+      "name": "You Belong With Me",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - You Belong With Me_L.mid",
+      "notes": 2316,
+      "encodable": 2316,
+      "bits": 2316,
+      "base64_chars": 383
+    },
+    "you_re_not_sorry": {
+      "name": "You_re Not Sorry",
+      "album": "Fearless",
+      "file": "midi/Fearless/Minnz Piano - You_re Not Sorry_L.mid",
+      "notes": 1602,
+      "encodable": 1602,
+      "bits": 1602,
+      "base64_chars": 264
+    },
+    "august": {
+      "name": "August",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - August_L.mid",
+      "notes": 1748,
+      "encodable": 1748,
+      "bits": 1748,
+      "base64_chars": 288
+    },
+    "betty": {
+      "name": "Betty",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Betty_L.mid",
+      "notes": 2569,
+      "encodable": 2569,
+      "bits": 2569,
+      "base64_chars": 425
+    },
+    "cardigan": {
+      "name": "Cardigan",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Cardigan_L.mid",
+      "notes": 1821,
+      "encodable": 1821,
+      "bits": 1821,
+      "base64_chars": 300
+    },
+    "epiphany": {
+      "name": "Epiphany",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Epiphany_L.mid",
+      "notes": 1147,
+      "encodable": 1147,
+      "bits": 1147,
+      "base64_chars": 188
+    },
+    "exile": {
+      "name": "Exile",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Exile_L.mid",
+      "notes": 2136,
+      "encodable": 2136,
+      "bits": 2136,
+      "base64_chars": 353
+    },
+    "hoax": {
+      "name": "Hoax",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Hoax_L.mid",
+      "notes": 975,
+      "encodable": 975,
+      "bits": 975,
+      "base64_chars": 159
+    },
+    "illicit_affairs": {
+      "name": "Illicit Affairs",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Illicit Affairs_L.mid",
+      "notes": 1736,
+      "encodable": 1736,
+      "bits": 1736,
+      "base64_chars": 286
+    },
+    "invisible_string": {
+      "name": "Invisible String",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Invisible String_L.mid",
+      "notes": 1961,
+      "encodable": 1961,
+      "bits": 1961,
+      "base64_chars": 324
+    },
+    "mad_woman": {
+      "name": "Mad Woman",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Mad Woman_L.mid",
+      "notes": 2296,
+      "encodable": 2296,
+      "bits": 2296,
+      "base64_chars": 380
+    },
+    "mirrorball": {
+      "name": "Mirrorball",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Mirrorball_L.mid",
+      "notes": 1806,
+      "encodable": 1806,
+      "bits": 1806,
+      "base64_chars": 298
+    },
+    "my_tears_ricochet": {
+      "name": "My Tears Ricochet",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - My Tears Ricochet_L.mid",
+      "notes": 1633,
+      "encodable": 1633,
+      "bits": 1633,
+      "base64_chars": 269
+    },
+    "peace": {
+      "name": "Peace",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Peace_L.mid",
+      "notes": 1623,
+      "encodable": 1623,
+      "bits": 1623,
+      "base64_chars": 267
+    },
+    "seven": {
+      "name": "Seven",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - Seven_L.mid",
+      "notes": 1674,
+      "encodable": 1674,
+      "bits": 1674,
+      "base64_chars": 276
+    },
+    "the_1": {
+      "name": "The 1",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - The 1_L.mid",
+      "notes": 1566,
+      "encodable": 1566,
+      "bits": 1566,
+      "base64_chars": 258
+    },
+    "the_lakes": {
+      "name": "The Lakes",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - The Lakes_L.mid",
+      "notes": 1533,
+      "encodable": 1533,
+      "bits": 1533,
+      "base64_chars": 252
+    },
+    "the_last_great_american_dynasty": {
+      "name": "The Last Great American Dynasty",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - The Last Great American Dynasty_L.mid",
+      "notes": 1993,
+      "encodable": 1993,
+      "bits": 1993,
+      "base64_chars": 329
+    },
+    "this_is_me_trying": {
+      "name": "This Is Me Trying",
+      "album": "Folklore",
+      "file": "midi/Folklore/Minnz Piano - This Is Me Trying_L.mid",
+      "notes": 1139,
+      "encodable": 1139,
+      "bits": 1139,
+      "base64_chars": 187
+    },
+    "afterglow": {
+      "name": "Afterglow",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Afterglow_L.mid",
+      "notes": 1345,
+      "encodable": 1345,
+      "bits": 1345,
+      "base64_chars": 221
+    },
+    "cornelia_street": {
+      "name": "Cornelia Street",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Cornelia Street_L.mid",
+      "notes": 2631,
+      "encodable": 2631,
+      "bits": 2631,
+      "base64_chars": 435
+    },
+    "cruel_summer": {
+      "name": "Cruel Summer",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Cruel Summer_L.mid",
+      "notes": 1865,
+      "encodable": 1865,
+      "bits": 1865,
+      "base64_chars": 308
+    },
+    "daylight": {
+      "name": "Daylight",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Daylight_L.mid",
+      "notes": 2108,
+      "encodable": 2108,
+      "bits": 2108,
+      "base64_chars": 348
+    },
+    "death_by_a_thousand_cuts": {
+      "name": "Death By A Thousand Cuts",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Death By A Thousand Cuts_L.mid",
+      "notes": 2031,
+      "encodable": 2031,
+      "bits": 2031,
+      "base64_chars": 335
+    },
+    "false_god": {
+      "name": "False God",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - False God_L.mid",
+      "notes": 1265,
+      "encodable": 1265,
+      "bits": 1265,
+      "base64_chars": 208
+    },
+    "i_forgot_that_you_existed": {
+      "name": "I Forgot That You Existed",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - I Forgot That You Existed_L.mid",
+      "notes": 1640,
+      "encodable": 1640,
+      "bits": 1640,
+      "base64_chars": 270
+    },
+    "i_think_he_knows": {
+      "name": "I Think He Knows",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - I Think He Knows_L.mid",
+      "notes": 1583,
+      "encodable": 1583,
+      "bits": 1583,
+      "base64_chars": 261
+    },
+    "it_s_nice_to_have_a_friend": {
+      "name": "It_s Nice To Have A Friend",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - It_s Nice To Have A Friend_L.mid",
+      "notes": 1150,
+      "encodable": 1150,
+      "bits": 1150,
+      "base64_chars": 189
+    },
+    "london_boy": {
+      "name": "London Boy",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - London Boy_L.mid",
+      "notes": 1735,
+      "encodable": 1735,
+      "bits": 1735,
+      "base64_chars": 286
+    },
+    "lover": {
+      "name": "Lover",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Lover_L.mid",
+      "notes": 1825,
+      "encodable": 1825,
+      "bits": 1825,
+      "base64_chars": 301
+    },
+    "me_": {
+      "name": "ME_",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - ME__L.mid",
+      "notes": 1904,
+      "encodable": 1904,
+      "bits": 1904,
+      "base64_chars": 314
+    },
+    "miss_americana___the_heartbreak_prince": {
+      "name": "Miss Americana _ The Heartbreak Prince",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Miss Americana _ The Heartbreak Prince_L.mid",
+      "notes": 1788,
+      "encodable": 1788,
+      "bits": 1788,
+      "base64_chars": 295
+    },
+    "paper_rings": {
+      "name": "Paper Rings",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Paper Rings_L.mid",
+      "notes": 1893,
+      "encodable": 1893,
+      "bits": 1893,
+      "base64_chars": 312
+    },
+    "soon_you_ll_get_better": {
+      "name": "Soon You_ll Get Better",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - Soon You_ll Get Better_L.mid",
+      "notes": 1840,
+      "encodable": 1840,
+      "bits": 1840,
+      "base64_chars": 304
+    },
+    "the_archer": {
+      "name": "The Archer",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - The Archer_L.mid",
+      "notes": 1748,
+      "encodable": 1748,
+      "bits": 1748,
+      "base64_chars": 288
+    },
+    "the_man": {
+      "name": "The Man",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - The Man_L.mid",
+      "notes": 2280,
+      "encodable": 2280,
+      "bits": 2280,
+      "base64_chars": 377
+    },
+    "you_need_to_calm_down": {
+      "name": "You Need To Calm Down",
+      "album": "Lover",
+      "file": "midi/Lover/Minnz Piano - You Need To Calm Down_L.mid",
+      "notes": 1706,
+      "encodable": 1706,
+      "bits": 1706,
+      "base64_chars": 281
+    },
+    "antihero": {
+      "name": "Anti-Hero",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Anti-Hero_L.mid",
+      "notes": 1596,
+      "encodable": 1596,
+      "bits": 1596,
+      "base64_chars": 263
+    },
+    "bejeweled": {
+      "name": "Bejeweled",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Bejeweled_L.mid",
+      "notes": 2033,
+      "encodable": 2033,
+      "bits": 2033,
+      "base64_chars": 336
+    },
+    "bigger_than_the_whole_sky": {
+      "name": "Bigger Than The Whole Sky",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Bigger Than The Whole Sky_L.mid",
+      "notes": 1264,
+      "encodable": 1264,
+      "bits": 1264,
+      "base64_chars": 208
+    },
+    "dear_reader": {
+      "name": "Dear Reader",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Dear Reader_L.mid",
+      "notes": 1403,
+      "encodable": 1403,
+      "bits": 1403,
+      "base64_chars": 231
+    },
+    "glitch": {
+      "name": "Glitch",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Glitch_L.mid",
+      "notes": 909,
+      "encodable": 909,
+      "bits": 909,
+      "base64_chars": 148
+    },
+    "high_infidelity": {
+      "name": "High Infidelity",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - High Infidelity_L.mid",
+      "notes": 1952,
+      "encodable": 1952,
+      "bits": 1952,
+      "base64_chars": 322
+    },
+    "hits_different": {
+      "name": "Hits Different",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Hits Different_L.mid",
+      "notes": 2352,
+      "encodable": 2352,
+      "bits": 2352,
+      "base64_chars": 389
+    },
+    "karma": {
+      "name": "Karma",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Karma_L.mid",
+      "notes": 1821,
+      "encodable": 1821,
+      "bits": 1821,
+      "base64_chars": 300
+    },
+    "labyrinth": {
+      "name": "Labyrinth",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Labyrinth_L.mid",
+      "notes": 1262,
+      "encodable": 1262,
+      "bits": 1262,
+      "base64_chars": 207
+    },
+    "lavender_haze": {
+      "name": "Lavender Haze",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Lavender Haze_L.mid",
+      "notes": 1611,
+      "encodable": 1611,
+      "bits": 1611,
+      "base64_chars": 265
+    },
+    "maroon": {
+      "name": "Maroon",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Maroon_L.mid",
+      "notes": 1825,
+      "encodable": 1825,
+      "bits": 1825,
+      "base64_chars": 301
+    },
+    "mastermind": {
+      "name": "Mastermind",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Mastermind_L.mid",
+      "notes": 1890,
+      "encodable": 1890,
+      "bits": 1890,
+      "base64_chars": 312
+    },
+    "midnight_rain": {
+      "name": "Midnight Rain",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Midnight Rain_L.mid",
+      "notes": 1156,
+      "encodable": 1156,
+      "bits": 1156,
+      "base64_chars": 190
+    },
+    "paris": {
+      "name": "Paris",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Paris_L.mid",
+      "notes": 1662,
+      "encodable": 1662,
+      "bits": 1662,
+      "base64_chars": 274
+    },
+    "question____": {
+      "name": "Question____",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Question_____L.mid",
+      "notes": 2125,
+      "encodable": 2125,
+      "bits": 2125,
+      "base64_chars": 351
+    },
+    "snow_on_the_beach": {
+      "name": "Snow On The Beach",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Snow On The Beach_L.mid",
+      "notes": 1722,
+      "encodable": 1722,
+      "bits": 1722,
+      "base64_chars": 284
+    },
+    "sweet_nothing": {
+      "name": "Sweet Nothing",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Sweet Nothing_L.mid",
+      "notes": 1448,
+      "encodable": 1448,
+      "bits": 1448,
+      "base64_chars": 238
+    },
+    "the_great_war": {
+      "name": "The Great War",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - The Great War_L.mid",
+      "notes": 2176,
+      "encodable": 2176,
+      "bits": 2176,
+      "base64_chars": 360
+    },
+    "vigilante_____": {
+      "name": "Vigilante ____",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Vigilante _____L.mid",
+      "notes": 1301,
+      "encodable": 1301,
+      "bits": 1301,
+      "base64_chars": 214
+    },
+    "would_ve__could_ve__should_ve": {
+      "name": "Would_ve_ Could_ve_ Should_ve",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - Would_ve_ Could_ve_ Should_ve_L.mid",
+      "notes": 2216,
+      "encodable": 2216,
+      "bits": 2216,
+      "base64_chars": 366
+    },
+    "you_re_on_your_own__kid": {
+      "name": "You_re On Your Own_ Kid",
+      "album": "Midnights",
+      "file": "midi/Midnights/Minnz Piano - You_re On Your Own_ Kid_L.mid",
+      "notes": 1732,
+      "encodable": 1732,
+      "bits": 1732,
+      "base64_chars": 286
+    },
+    "22": {
+      "name": "22",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - 22_L.mid",
+      "notes": 2220,
+      "encodable": 2220,
+      "bits": 2220,
+      "base64_chars": 367
+    },
+    "all_too_well__10_minute_version_": {
+      "name": "All Too Well _10 Minute Version_",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - All Too Well _10 Minute Version__L.mid",
+      "notes": 5544,
+      "encodable": 5544,
+      "bits": 5544,
+      "base64_chars": 921
+    },
+    "all_too_well": {
+      "name": "All Too Well",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - All Too Well_L.mid",
+      "notes": 3058,
+      "encodable": 3058,
+      "bits": 3058,
+      "base64_chars": 507
+    },
+    "babe": {
+      "name": "Babe",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Babe_L.mid",
+      "notes": 1671,
+      "encodable": 1671,
+      "bits": 1671,
+      "base64_chars": 275
+    },
+    "better_man": {
+      "name": "Better Man",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Better Man_L.mid",
+      "notes": 2476,
+      "encodable": 2476,
+      "bits": 2476,
+      "base64_chars": 410
+    },
+    "everything_has_changed__extended_wedding_version_": {
+      "name": "Everything Has Changed _Extended Wedding Version_",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Everything Has Changed _Extended Wedding Version__L.mid",
+      "notes": 4772,
+      "encodable": 4772,
+      "bits": 4772,
+      "base64_chars": 792
+    },
+    "forever_winter": {
+      "name": "Forever Winter",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Forever Winter_L.mid",
+      "notes": 2589,
+      "encodable": 2589,
+      "bits": 2589,
+      "base64_chars": 428
+    },
+    "i_almost_do": {
+      "name": "I Almost Do",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - I Almost Do_L.mid",
+      "notes": 1560,
+      "encodable": 1560,
+      "bits": 1560,
+      "base64_chars": 257
+    },
+    "i_bet_you_think_about_me": {
+      "name": "I Bet You Think About Me",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - I Bet You Think About Me_L.mid",
+      "notes": 2596,
+      "encodable": 2596,
+      "bits": 2596,
+      "base64_chars": 430
+    },
+    "i_knew_you_were_trouble": {
+      "name": "I Knew You Were Trouble",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - I Knew You Were Trouble_L.mid",
+      "notes": 2562,
+      "encodable": 2562,
+      "bits": 2562,
+      "base64_chars": 424
+    },
+    "message_in_a_bottle": {
+      "name": "Message In A Bottle",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Message In A Bottle_L.mid",
+      "notes": 2083,
+      "encodable": 2083,
+      "bits": 2083,
+      "base64_chars": 344
+    },
+    "nothing_new": {
+      "name": "Nothing New",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Nothing New_L.mid",
+      "notes": 1738,
+      "encodable": 1738,
+      "bits": 1738,
+      "base64_chars": 287
+    },
+    "red": {
+      "name": "Red",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Red_L.mid",
+      "notes": 1610,
+      "encodable": 1610,
+      "bits": 1610,
+      "base64_chars": 265
+    },
+    "ronan": {
+      "name": "Ronan",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Ronan_L.mid",
+      "notes": 1537,
+      "encodable": 1537,
+      "bits": 1537,
+      "base64_chars": 253
+    },
+    "run": {
+      "name": "Run",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Run_L.mid",
+      "notes": 2642,
+      "encodable": 2642,
+      "bits": 2642,
+      "base64_chars": 437
+    },
+    "state_of_grace": {
+      "name": "State Of Grace",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - State Of Grace_L.mid",
+      "notes": 1695,
+      "encodable": 1695,
+      "bits": 1695,
+      "base64_chars": 279
+    },
+    "stay_stay_stay": {
+      "name": "Stay Stay Stay",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Stay Stay Stay_L.mid",
+      "notes": 1832,
+      "encodable": 1832,
+      "bits": 1832,
+      "base64_chars": 302
+    },
+    "the_lucky_one": {
+      "name": "The Lucky One",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - The Lucky One_L.mid",
+      "notes": 2092,
+      "encodable": 2092,
+      "bits": 2092,
+      "base64_chars": 346
+    },
+    "the_very_first_night": {
+      "name": "The Very First Night",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - The Very First Night_L.mid",
+      "notes": 2104,
+      "encodable": 2104,
+      "bits": 2104,
+      "base64_chars": 348
+    },
+    "treacherous": {
+      "name": "Treacherous",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - Treacherous_L.mid",
+      "notes": 1674,
+      "encodable": 1674,
+      "bits": 1674,
+      "base64_chars": 276
+    },
+    "we_are_never_ever_getting_back_together": {
+      "name": "We Are Never Ever Getting Back Together",
+      "album": "Red",
+      "file": "midi/Red/Minnz Piano - We Are Never Ever Getting Back Together_L.mid",
+      "notes": 1834,
+      "encodable": 1834,
+      "bits": 1834,
+      "base64_chars": 303
+    },
+    "___ready_for_it_": {
+      "name": "___Ready For It_",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - ___Ready For It__L.mid",
+      "notes": 2355,
+      "encodable": 2355,
+      "bits": 2355,
+      "base64_chars": 389
+    },
+    "call_it_what_you_want": {
+      "name": "Call It What You Want",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Call It What You Want_L.mid",
+      "notes": 1769,
+      "encodable": 1769,
+      "bits": 1769,
+      "base64_chars": 292
+    },
+    "dancing_with_our_hands_tied": {
+      "name": "Dancing With Our Hands Tied",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Dancing With Our Hands Tied_L.mid",
+      "notes": 1610,
+      "encodable": 1610,
+      "bits": 1610,
+      "base64_chars": 265
+    },
+    "delicate": {
+      "name": "Delicate",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Delicate_L.mid",
+      "notes": 2186,
+      "encodable": 2186,
+      "bits": 2186,
+      "base64_chars": 361
+    },
+    "don_t_blame_me": {
+      "name": "Don_t Blame Me",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Don_t Blame Me_L.mid",
+      "notes": 2132,
+      "encodable": 2132,
+      "bits": 2132,
+      "base64_chars": 352
+    },
+    "dress": {
+      "name": "Dress",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Dress_L.mid",
+      "notes": 2137,
+      "encodable": 2137,
+      "bits": 2137,
+      "base64_chars": 353
+    },
+    "end_game": {
+      "name": "End Game",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - End Game_L.mid",
+      "notes": 2242,
+      "encodable": 2242,
+      "bits": 2242,
+      "base64_chars": 371
+    },
+    "getaway_car": {
+      "name": "Getaway Car",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Getaway Car_L.mid",
+      "notes": 1617,
+      "encodable": 1617,
+      "bits": 1617,
+      "base64_chars": 266
+    },
+    "gorgeous": {
+      "name": "Gorgeous",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Gorgeous_L.mid",
+      "notes": 1878,
+      "encodable": 1878,
+      "bits": 1878,
+      "base64_chars": 310
+    },
+    "i_did_something_bad": {
+      "name": "I Did Something Bad",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - I Did Something Bad_L.mid",
+      "notes": 1979,
+      "encodable": 1979,
+      "bits": 1979,
+      "base64_chars": 327
+    },
+    "king_of_my_heart": {
+      "name": "King Of My Heart",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - King Of My Heart_L.mid",
+      "notes": 1893,
+      "encodable": 1893,
+      "bits": 1893,
+      "base64_chars": 312
+    },
+    "look_what_you_made_me_do": {
+      "name": "Look What You Made Me Do",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - Look What You Made Me Do_L.mid",
+      "notes": 2158,
+      "encodable": 2158,
+      "bits": 2158,
+      "base64_chars": 357
+    },
+    "new_year_s_day": {
+      "name": "New Year_s Day",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - New Year_s Day_L.mid",
+      "notes": 1789,
+      "encodable": 1789,
+      "bits": 1789,
+      "base64_chars": 295
+    },
+    "so_it_goes___": {
+      "name": "So It Goes___",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - So It Goes____L.mid",
+      "notes": 1614,
+      "encodable": 1614,
+      "bits": 1614,
+      "base64_chars": 266
+    },
+    "this_is_why_we_can_t_have_nice_things": {
+      "name": "This Is Why We Can_t Have Nice Things",
+      "album": "Reputation",
+      "file": "midi/Reputation/Minnz Piano - This Is Why We Can_t Have Nice Things_L.mid",
+      "notes": 1866,
+      "encodable": 1866,
+      "bits": 1866,
+      "base64_chars": 308
+    },
+    "back_to_december": {
+      "name": "Back To December",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Back To December_L.mid",
+      "notes": 2352,
+      "encodable": 2352,
+      "bits": 2352,
+      "base64_chars": 389
+    },
+    "better_than_revenge": {
+      "name": "Better Than Revenge",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Better Than Revenge_L.mid",
+      "notes": 1823,
+      "encodable": 1823,
+      "bits": 1823,
+      "base64_chars": 301
+    },
+    "dear_john": {
+      "name": "Dear John",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Dear John_L.mid",
+      "notes": 2293,
+      "encodable": 2293,
+      "bits": 2293,
+      "base64_chars": 379
+    },
+    "enchanted": {
+      "name": "Enchanted",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Enchanted_L.mid",
+      "notes": 2484,
+      "encodable": 2484,
+      "bits": 2484,
+      "base64_chars": 411
+    },
+    "haunted": {
+      "name": "Haunted",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Haunted_L.mid",
+      "notes": 1684,
+      "encodable": 1684,
+      "bits": 1684,
+      "base64_chars": 278
+    },
+    "if_this_was_a_movie": {
+      "name": "If This Was A Movie",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - If This Was A Movie_L.mid",
+      "notes": 1768,
+      "encodable": 1768,
+      "bits": 1768,
+      "base64_chars": 292
+    },
+    "innocent": {
+      "name": "Innocent",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Innocent_L.mid",
+      "notes": 1986,
+      "encodable": 1986,
+      "bits": 1986,
+      "base64_chars": 328
+    },
+    "last_kiss": {
+      "name": "Last Kiss",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Last Kiss_L.mid",
+      "notes": 2792,
+      "encodable": 2792,
+      "bits": 2792,
+      "base64_chars": 462
+    },
+    "long_live": {
+      "name": "Long Live",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Long Live_L.mid",
+      "notes": 2686,
+      "encodable": 2686,
+      "bits": 2686,
+      "base64_chars": 445
+    },
+    "mean": {
+      "name": "Mean",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Mean_L.mid",
+      "notes": 2017,
+      "encodable": 2017,
+      "bits": 2017,
+      "base64_chars": 333
+    },
+    "mine": {
+      "name": "Mine",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Mine_L.mid",
+      "notes": 2115,
+      "encodable": 2115,
+      "bits": 2115,
+      "base64_chars": 349
+    },
+    "never_grow_up": {
+      "name": "Never Grow Up",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Never Grow Up_L.mid",
+      "notes": 1780,
+      "encodable": 1780,
+      "bits": 1780,
+      "base64_chars": 294
+    },
+    "ours": {
+      "name": "Ours",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Ours_L.mid",
+      "notes": 1699,
+      "encodable": 1699,
+      "bits": 1699,
+      "base64_chars": 280
+    },
+    "sparks_fly": {
+      "name": "Sparks Fly",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Sparks Fly_L.mid",
+      "notes": 2379,
+      "encodable": 2379,
+      "bits": 2379,
+      "base64_chars": 393
+    },
+    "speak_now": {
+      "name": "Speak Now",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Speak Now_L.mid",
+      "notes": 2298,
+      "encodable": 2298,
+      "bits": 2298,
+      "base64_chars": 380
+    },
+    "superman": {
+      "name": "Superman",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - Superman_L.mid",
+      "notes": 2082,
+      "encodable": 2082,
+      "bits": 2082,
+      "base64_chars": 344
+    },
+    "the_story_of_us": {
+      "name": "The Story Of Us",
+      "album": "Speak Now",
+      "file": "midi/Speak Now/Minnz Piano - The Story Of Us_L.mid",
+      "notes": 1921,
+      "encodable": 1921,
+      "bits": 1921,
+      "base64_chars": 317
+    },
+    "a_perfectly_good_heart": {
+      "name": "A Perfectly Good Heart",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - A Perfectly Good Heart_L.mid",
+      "notes": 1405,
+      "encodable": 1405,
+      "bits": 1405,
+      "base64_chars": 231
+    },
+    "a_place_in_this_world": {
+      "name": "A Place In This World",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - A Place In This World_L.mid",
+      "notes": 1546,
+      "encodable": 1546,
+      "bits": 1546,
+      "base64_chars": 255
+    },
+    "cold_as_you": {
+      "name": "Cold as You",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Cold as You_L.mid",
+      "notes": 1704,
+      "encodable": 1704,
+      "bits": 1704,
+      "base64_chars": 281
+    },
+    "im_only_me_when_im_with_you": {
+      "name": "Im Only Me When Im With You",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Im Only Me When Im With You_L.mid",
+      "notes": 2181,
+      "encodable": 2181,
+      "bits": 2181,
+      "base64_chars": 360
+    },
+    "invisible": {
+      "name": "Invisible",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Invisible_L.mid",
+      "notes": 1790,
+      "encodable": 1790,
+      "bits": 1790,
+      "base64_chars": 295
+    },
+    "marys_song__oh_my_my_my_": {
+      "name": "Marys Song _Oh My My My_",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Marys Song _Oh My My My__L.mid",
+      "notes": 1656,
+      "encodable": 1656,
+      "bits": 1656,
+      "base64_chars": 273
+    },
+    "our_song": {
+      "name": "Our Song",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Our Song_L.mid",
+      "notes": 1904,
+      "encodable": 1904,
+      "bits": 1904,
+      "base64_chars": 314
+    },
+    "picture_to_burn": {
+      "name": "Picture to Burn",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Picture to Burn_L.mid",
+      "notes": 1581,
+      "encodable": 1581,
+      "bits": 1581,
+      "base64_chars": 260
+    },
+    "shouldve_said_no": {
+      "name": "Shouldve Said No",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Shouldve Said No_L.mid",
+      "notes": 1875,
+      "encodable": 1875,
+      "bits": 1875,
+      "base64_chars": 309
+    },
+    "stay_beautiful": {
+      "name": "Stay Beautiful",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Stay Beautiful_L.mid",
+      "notes": 1423,
+      "encodable": 1423,
+      "bits": 1423,
+      "base64_chars": 234
+    },
+    "teardrops_on_my_guitar": {
+      "name": "Teardrops On My Guitar",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Teardrops On My Guitar_L.mid",
+      "notes": 1694,
+      "encodable": 1694,
+      "bits": 1694,
+      "base64_chars": 279
+    },
+    "the_outside": {
+      "name": "The Outside",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - The Outside_L.mid",
+      "notes": 1839,
+      "encodable": 1839,
+      "bits": 1839,
+      "base64_chars": 303
+    },
+    "tied_together_with_a_smile": {
+      "name": "Tied Together with a Smile",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Tied Together with a Smile_L.mid",
+      "notes": 1942,
+      "encodable": 1942,
+      "bits": 1942,
+      "base64_chars": 321
+    },
+    "tim_mcgraw": {
+      "name": "Tim McGraw",
+      "album": "TS_Debut",
+      "file": "midi/TS_Debut/Minnz Piano - Tim McGraw_L.mid",
+      "notes": 1753,
+      "encodable": 1753,
+      "bits": 1753,
+      "base64_chars": 289
+    },
+    "but_daddy_i_love_him": {
+      "name": "But Daddy I Love Him",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - But Daddy I Love Him_L.mid",
+      "notes": 2648,
+      "encodable": 2648,
+      "bits": 2648,
+      "base64_chars": 438
+    },
+    "cassandra": {
+      "name": "Cassandra",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Cassandra_L.mid",
+      "notes": 1585,
+      "encodable": 1585,
+      "bits": 1585,
+      "base64_chars": 261
+    },
+    "chloe_or_sam_or_sophia_or_marcus": {
+      "name": "Chloe or Sam or Sophia or Marcus",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Chloe or Sam or Sophia or Marcus_L.mid",
+      "notes": 2052,
+      "encodable": 2052,
+      "bits": 2052,
+      "base64_chars": 339
+    },
+    "clara_bow": {
+      "name": "Clara Bow",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Clara Bow_L.mid",
+      "notes": 1594,
+      "encodable": 1594,
+      "bits": 1594,
+      "base64_chars": 263
+    },
+    "down_bad": {
+      "name": "Down Bad",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Down Bad_L.mid",
+      "notes": 2251,
+      "encodable": 2251,
+      "bits": 2251,
+      "base64_chars": 372
+    },
+    "florida___": {
+      "name": "Florida___",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Florida____L.mid",
+      "notes": 1515,
+      "encodable": 1515,
+      "bits": 1515,
+      "base64_chars": 249
+    },
+    "fortnight": {
+      "name": "Fortnight",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Fortnight_L.mid",
+      "notes": 2120,
+      "encodable": 2120,
+      "bits": 2120,
+      "base64_chars": 350
+    },
+    "fresh_out_the_slammer": {
+      "name": "Fresh Out The Slammer",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Fresh Out The Slammer_L.mid",
+      "notes": 1416,
+      "encodable": 1416,
+      "bits": 1416,
+      "base64_chars": 233
+    },
+    "guilty_as_sin_": {
+      "name": "Guilty as Sin_",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Guilty as Sin__L.mid",
+      "notes": 1686,
+      "encodable": 1686,
+      "bits": 1686,
+      "base64_chars": 278
+    },
+    "how_did_it_end_": {
+      "name": "How Did It End_",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - How Did It End__L.mid",
+      "notes": 2623,
+      "encodable": 2623,
+      "bits": 2623,
+      "base64_chars": 434
+    },
+    "i_can_do_it_with_a_broken_heart": {
+      "name": "I Can Do It With A Broken Heart",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - I Can Do It With A Broken Heart_L.mid",
+      "notes": 1750,
+      "encodable": 1750,
+      "bits": 1750,
+      "base64_chars": 289
+    },
+    "i_can_fix_him__no_really_i_can_": {
+      "name": "I Can Fix Him _No Really I Can_",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - I Can Fix Him _No Really I Can__L.mid",
+      "notes": 938,
+      "encodable": 938,
+      "bits": 938,
+      "base64_chars": 153
+    },
+    "i_hate_it_here": {
+      "name": "I Hate It Here",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - I Hate It Here_L.mid",
+      "notes": 1839,
+      "encodable": 1839,
+      "bits": 1839,
+      "base64_chars": 303
+    },
+    "i_look_in_peoples_windows": {
+      "name": "I Look in Peoples Windows",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - I Look in Peoples Windows_L.mid",
+      "notes": 926,
+      "encodable": 926,
+      "bits": 926,
+      "base64_chars": 151
+    },
+    "imgonnagetyouback": {
+      "name": "imgonnagetyouback",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - imgonnagetyouback_L.mid",
+      "notes": 2223,
+      "encodable": 2223,
+      "bits": 2223,
+      "base64_chars": 367
+    },
+    "loml": {
+      "name": "loml",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - loml_L.mid",
+      "notes": 2328,
+      "encodable": 2328,
+      "bits": 2328,
+      "base64_chars": 385
+    },
+    "my_boy_only_breaks_his_favorite_toys": {
+      "name": "My Boy Only Breaks His Favorite Toys",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - My Boy Only Breaks His Favorite Toys_L.mid",
+      "notes": 1998,
+      "encodable": 1998,
+      "bits": 1998,
+      "base64_chars": 330
+    },
+    "peter": {
+      "name": "Peter",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Peter_L.mid",
+      "notes": 2427,
+      "encodable": 2427,
+      "bits": 2427,
+      "base64_chars": 401
+    },
+    "robin": {
+      "name": "Robin",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Robin_L.mid",
+      "notes": 1882,
+      "encodable": 1882,
+      "bits": 1882,
+      "base64_chars": 311
+    },
+    "so_high_school": {
+      "name": "So High School",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - So High School_L.mid",
+      "notes": 2143,
+      "encodable": 2143,
+      "bits": 2143,
+      "base64_chars": 354
+    },
+    "so_long__london": {
+      "name": "So Long_ London",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - So Long_ London_L.mid",
+      "notes": 2197,
+      "encodable": 2197,
+      "bits": 2197,
+      "base64_chars": 363
+    },
+    "thank_you_aimee": {
+      "name": "thanK you aIMee",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - thanK you aIMee_L.mid",
+      "notes": 2273,
+      "encodable": 2273,
+      "bits": 2273,
+      "base64_chars": 376
+    },
+    "the_albatross": {
+      "name": "The Albatross",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Albatross_L.mid",
+      "notes": 1418,
+      "encodable": 1418,
+      "bits": 1418,
+      "base64_chars": 233
+    },
+    "the_alchemy": {
+      "name": "The Alchemy",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Alchemy_L.mid",
+      "notes": 1474,
+      "encodable": 1474,
+      "bits": 1474,
+      "base64_chars": 243
+    },
+    "the_black_dog": {
+      "name": "The Black Dog",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Black Dog_L.mid",
+      "notes": 1741,
+      "encodable": 1741,
+      "bits": 1741,
+      "base64_chars": 287
+    },
+    "the_bolter": {
+      "name": "The Bolter",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Bolter_L.mid",
+      "notes": 1982,
+      "encodable": 1982,
+      "bits": 1982,
+      "base64_chars": 327
+    },
+    "the_manuscript": {
+      "name": "The Manuscript",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Manuscript_L.mid",
+      "notes": 1135,
+      "encodable": 1135,
+      "bits": 1135,
+      "base64_chars": 186
+    },
+    "the_prophecy": {
+      "name": "The Prophecy",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Prophecy_L.mid",
+      "notes": 1929,
+      "encodable": 1929,
+      "bits": 1929,
+      "base64_chars": 318
+    },
+    "the_smallest_man_who_ever_lived": {
+      "name": "The Smallest Man Who Ever Lived",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Smallest Man Who Ever Lived_L.mid",
+      "notes": 1766,
+      "encodable": 1766,
+      "bits": 1766,
+      "base64_chars": 291
+    },
+    "the_tortured_poets_department": {
+      "name": "The Tortured Poets Department",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - The Tortured Poets Department_L.mid",
+      "notes": 2815,
+      "encodable": 2815,
+      "bits": 2815,
+      "base64_chars": 466
+    },
+    "whos_afraid_of_little_old_me_": {
+      "name": "Whos Afraid of Little Old Me_",
+      "album": "TTPD",
+      "file": "midi/TTPD/Minnz Piano - Whos Afraid of Little Old Me__L.mid",
+      "notes": 2189,
+      "encodable": 2189,
+      "bits": 2189,
+      "base64_chars": 362
+    }
+  }
+}

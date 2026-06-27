@@ -227,14 +227,15 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
     <span id="themeName" style="flex:1;min-width:0;text-align:center;font-size:0.75rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">1989</span>
     <button class="icon-btn" onclick="nextTheme()" style="width:24px;height:24px;font-size:0.65rem;flex-shrink:0">▶</button>
     <span style="flex-shrink:0">🌓</span>
-    <input type="range" id="bgOpacity" min="0" max="100" value="100" oninput="updateBgOpacity(this.value)" style="width:60px;flex-shrink:0;accent-color:var(--accent);">
-    <span id="bgOpacityVal" style="width:32px;text-align:right;flex-shrink:0;font-size:0.7rem">100%</span>
+    <input type="range" id="bgOpacity" min="0" max="100" value="75" oninput="updateBgOpacity(this.value)" style="width:60px;flex-shrink:0;accent-color:var(--accent);">
+    <span id="bgOpacityVal" style="width:32px;text-align:right;flex-shrink:0;font-size:0.7rem">75%</span>
 </div>
 
 <div class="tabs">
     <div class="tab active" onclick="switchTab('enc')">🔒 加密</div>
     <div class="tab" onclick="switchTab('dec')">🔓 解密</div>
     <div class="tab" onclick="switchTab('chat')">💬 密聊</div>
+    <div class="tab" onclick="switchTab('midi')">🎵 MIDI</div>
 </div>
 
 <div class="content">
@@ -315,6 +316,32 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
                 <span class="switch"></span>
                 <span style="font-size:0.6rem;color:var(--dim)">自动获取📋解密</span>
             </label>
+        </div>
+    </div>
+    <div class="panel" id="panelMidi">
+        <div style="display:flex;gap:6px;align-items:center">
+            <button class="icon-btn" onclick="openMidiPicker()" title="挑选MIDI" style="flex:1;width:auto;font-size:0.8rem;gap:6px">🎹 挑选MIDI…</button>
+        </div>
+        <input type="hidden" id="midiSongSelect" value="">
+        <div style="font-size:0.65rem;color:var(--dim);padding:2px 0" id="midiSongInfo"></div>
+        <textarea id="midiPlainInput" placeholder="输入要隐藏的明文…" oninput="updateMidiCapacity()" onkeyup="updateMidiCapacity()" onpaste="setTimeout(updateMidiCapacity,0)" oncut="setTimeout(updateMidiCapacity,0)"></textarea>
+        <div class="pwd-strength" style="margin:0">
+            <div id="midiCapBar" style="height:100%;transition:width .3s,background .3s;width:0;background:var(--accent)"></div>
+        </div>
+        <div style="font-size:0.55rem;text-align:right;min-height:13px;color:var(--text)" id="midiCapLabel"></div>
+        <div class="btn-row">
+            <button class="btn btn-primary" onclick="midiEncodeAndShare()">🔒 编码并分享 .mid</button>
+            <button class="btn btn-outline" onclick="clearArea('midiPlainInput')">清空</button>
+        </div>
+        <div id="midiEncodeStatus" style="font-size:0.7rem;color:var(--dim);min-height:18px"></div>
+        <div style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px">
+            <div style="font-size:0.75rem;color:var(--dim);margin-bottom:4px">📥 接收方：打开收到的 .mid 文件</div>
+            <input type="file" id="midiFileInput" accept=".mid,.midi" onchange="midiDecodeFromFile()" style="width:100%;padding:8px;border-radius:var(--rs);border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);font-size:0.75rem;outline:none;color-scheme:dark">
+            <textarea id="midiPlainOutput" placeholder="解码后的明文…" readonly style="margin-top:6px;width:100%;box-sizing:border-box"></textarea>
+            <div class="btn-row">
+                <button class="btn btn-copy" onclick="copyText('midiPlainOutput')">📋 复制明文</button>
+            </div>
+            <div id="midiDecodeStatus" style="font-size:0.7rem;color:var(--dim);min-height:18px"></div>
         </div>
     </div>
 </div>
@@ -628,7 +655,7 @@ function clearPassword(){
 }
 function autoSavePwd(){const p=gp();if(p)savePwdHistory(p);}
 function togglePwd(){const e=document.getElementById('password'),b=document.getElementById('togglePwd');if(e.type==='password'){e.type='text';b.textContent='🙈'}else{e.type='password';b.textContent='👁'}}
-function switchTab(tab){document.querySelectorAll('.tab,.panel').forEach(e=>e.classList.remove('active'));if(tab==='enc'){document.querySelector('.tab:nth-child(1)').classList.add('active');document.getElementById('panelEnc').classList.add('active')}else if(tab==='dec'){document.querySelector('.tab:nth-child(2)').classList.add('active');document.getElementById('panelDec').classList.add('active')}else{document.querySelector('.tab:nth-child(3)').classList.add('active');document.getElementById('panelChat').classList.add('active');renderChat()}}
+function switchTab(tab){document.querySelectorAll('.tab,.panel').forEach(e=>e.classList.remove('active'));if(tab==='enc'){document.querySelector('.tab:nth-child(1)').classList.add('active');document.getElementById('panelEnc').classList.add('active')}else if(tab==='dec'){document.querySelector('.tab:nth-child(2)').classList.add('active');document.getElementById('panelDec').classList.add('active')}else if(tab==='chat'){document.querySelector('.tab:nth-child(3)').classList.add('active');document.getElementById('panelChat').classList.add('active');renderChat()}else if(tab==='midi'){document.querySelector('.tab:nth-child(4)').classList.add('active');document.getElementById('panelMidi').classList.add('active');initMidiTab()}}
 function t(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
 function clearEncrypt(){
     document.getElementById('plainInput').value='';
@@ -643,7 +670,7 @@ function clearDecrypt(){
     stopDecryptCountdown();
     uc();
 }
-function clearArea(id){document.getElementById(id).value='';uc()}
+function clearArea(id){document.getElementById(id).value='';uc();if(id==='midiPlainInput')updateMidiCapacity()}
 async function copyText(id){let v;if(id==='cipherOutput'&&emojiMode){v=document.getElementById('emojiCipher').textContent}else{v=document.getElementById(id).value}if(!v)return t('⚠️ 无内容');try{await navigator.clipboard.writeText(v);t('✅ 已复制')}catch{document.getElementById(id).select();document.execCommand('copy');t('✅ 已复制')}}
 async function shareCipher(){
     const b64=document.getElementById('cipherOutput').value;
@@ -1206,10 +1233,30 @@ window.addEventListener('beforeunload',function(){
 });
 
 // Init
-loadChat();checkShareLink();initDeviceName();setTheme();updateBgOpacity(100);uc();renderPwdHistory();
+loadChat();checkShareLink();initDeviceName();setTheme();updateBgOpacity(75);uc();renderPwdHistory();
 handleIncomingShare();
 // PWA service worker
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js')}
-</script>
+</script><script src="midi_stego.js?v=13"></script>
+<!-- 🎹 MIDI 挑选 Modal -->
+<div id="midiPickerModal" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);justify-content:flex-end;align-items:stretch">
+    <div class="sheet" style="background:rgba(20,20,45,0.98);border-radius:16px 16px 0 0;padding:16px;max-height:75vh;width:100%;overflow-y:auto;display:flex;flex-direction:column;gap:10px;">
+        <h3 style="font-size:1rem;text-align:center">🎹 挑选 Taylor Swift 钢琴 MIDI</h3>
+        <div class="lyric-custom-select" id="midiCsAlbum">
+            <button class="lcs-trigger" id="midiTrigAlbum" onclick="midiToggleCS('midiCsAlbum')" disabled>— 专辑 —</button>
+            <div class="lcs-options" id="midiOptsAlbum"></div>
+        </div>
+        <div class="lyric-custom-select" id="midiCsSong">
+            <button class="lcs-trigger" id="midiTrigSong" onclick="midiToggleCS('midiCsSong')" disabled>— 歌曲 —</button>
+            <div class="lcs-options" id="midiOptsSong"></div>
+        </div>
+        <div style="font-size:0.7rem;color:var(--dim);min-height:16px" id="midiPickerPreview"></div>
+        <div class="modal-btns" style="display:flex;gap:8px">
+            <button class="btn btn-outline" onclick="closeMidiPicker()" style="flex:1;justify-content:center">取消</button>
+            <button class="btn btn-primary" id="midiConfirmBtn" onclick="confirmMidiPick()" disabled style="flex:1;justify-content:center">🎹 确认</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
