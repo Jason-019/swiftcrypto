@@ -294,28 +294,31 @@ async function midiEncodeAndShare(){
             String(now.getMinutes()).padStart(2,'0')+
             String(now.getSeconds()).padStart(2,'0');
         const fileName=song.name.replace(/[^a-zA-Z0-9\u4e00-\u9fff _-]/g,'')+'_'+ts+'.mid';
-        const file=new File([blob],fileName,{type:'audio/midi'});
-        // Web Share API 三级回退: 文件 → 文字 → 下载
+        // Web Share API: 测试多种 MIME 类型绕过手机端文件检测
         if(navigator.share){
-            // 先尝试文件分享（Safari iOS, Chrome Android 支持）
             let shared=false;
+            // ① 尝试 application/octet-stream（通用二进制，手机更可能接受）
+            const file1=new File([blob],fileName,{type:'application/octet-stream'});
             try{
-                await navigator.share({title:'SwiftCrypto MIDI',text:song.name, files:[file]});
+                await navigator.share({title:'SwiftCrypto MIDI',text:song.name, files:[file1]});
                 t('✅ 已分享 .mid 文件！');shared=true;
-            }catch(e){
-                if(e.name==='AbortError'){t('👋 已取消分享'); return;}
-                // 文件分享失败 → 尝试纯文字分享（Edge/微信/QQ等）
+            }catch(e){if(e.name==='AbortError'){t('👋 已取消分享'); return;}}
+            // ② 回退：audio/midi
+            if(!shared){
+                const file2=new File([blob],fileName,{type:'audio/midi'});
+                try{
+                    await navigator.share({title:'SwiftCrypto MIDI',text:song.name, files:[file2]});
+                    t('✅ 已分享 .mid 文件！');shared=true;
+                }catch(e){if(e.name==='AbortError'){t('👋 已取消分享'); return;}}
             }
+            // ③ 文字分享 + 下载保底
             if(!shared){
                 try{
                     const msg=`🎵 SwiftCrypto MIDI 隐写\n歌曲: ${song.name}\n接收方请用 SwiftCrypto 解码\nhttps://jason-019.github.io/swiftcrypto/`;
                     await navigator.share({title:'SwiftCrypto MIDI',text:msg});
                     t('✅ 已分享链接');shared=true;
-                }catch(e2){
-                    if(e2.name==='AbortError'){t('👋 已取消分享'); return;}
-                }
+                }catch(e2){if(e2.name==='AbortError'){t('👋 已取消分享'); return;}}
             }
-            // 无论如何都触发下载保底
             midiDownloadFallback(blob,fileName,status,encodedBits,song);
         }else{
             midiDownloadFallback(blob,fileName,status,encodedBits,song);
