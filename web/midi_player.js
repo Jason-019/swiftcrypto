@@ -158,44 +158,7 @@ function _ssUpdateBtn(){
 
 // ── WAV 导出 ──
 async function ssExportWav(){
-    if(!_ssPlaybackBuf){t('⚠️ 请先编码或解码 MIDI');return}
-    const status=document.getElementById('midiEncodeStatus');
-    try{
-        status.textContent='🎹 加载合成引擎…';
-        const mod=await import(SS_CDN);
-        const sfBuf=await(await fetch(SS_SF)).arrayBuffer();
-        const events=_ssParseEvents(_ssPlaybackBuf);
-        if(!events.length)throw new Error('MIDI 无音符');
-        const lastEvt=events[events.length-1];
-        const totalDuration=Math.min(lastEvt.time/1000+3,300);
-        const sampleRate=44100;
-        const octx=new OfflineAudioContext(2,Math.ceil(sampleRate*totalDuration),sampleRate);
-        const synth=new mod.Synthetizer(octx);
-        await synth.soundBankManager.addSoundBank(sfBuf,'gm');
-        await synth.isReady;
-        synth.programChange(0,0);
-        synth.connect(octx.destination);
-        // 调度所有 MIDI 事件
-        for(const e of events){
-            const t=e.time/1000;
-            if(e.cmd===0x90&&e.vel>0)synth.noteOn(e.ch,e.note,e.vel,t);
-            else if(e.cmd===0x80||(e.cmd===0x90&&e.vel===0))synth.noteOff(e.ch,e.note,t);
-            else if(e.cmd===0xC0)synth.programChange(e.ch,e.val,t);
-        }
-        status.textContent='🎧 渲染中…';
-        const rendered=await octx.startRendering();
-        const wav=_audioBufferToWav(rendered);
-        const blob=new Blob([wav],{type:'audio/wav'});
-        const name=(document.getElementById('midiSongInfo')?.textContent?.split('|').pop()?.trim()||'midi')+'.wav';
-        const url=URL.createObjectURL(blob);
-        const a=document.createElement('a');a.href=url;a.download=name.replace(/[^a-zA-Z0-9\u4e00-\u9fff _.-]/g,'');a.click();
-        URL.revokeObjectURL(url);
-        t('✅ WAV 已导出');
-        status.textContent='✅ WAV 导出完成';
-    }catch(e){
-        status.textContent='❌ '+e.message;
-        t('❌ '+e.message);
-    }
+    t('⚠️ WAV导出暂不可用，请使用播放功能');
 }
 
 // ── 暴露到全局 ──
