@@ -321,9 +321,6 @@ async function midiEncodeAndShare(){
             midiDownloadFallback(blob,fileName,status,encodedBits,song);
         }
         status.textContent=`✅ 编码完成 — ${encodedBits} bits 已嵌入 "${song.name}"`;
-        // 存储缓冲区供播放引擎使用
-        if(window._ssSetBuf){window._ssSetBuf(bytes.buffer.slice(0));}
-        document.getElementById('midiPlayRow').style.display='flex';
         autoSavePwd();
     }catch(e){
         status.textContent='❌ '+e.message;
@@ -396,9 +393,6 @@ function midiDecodeFromFile(){
             const sd=checkSelfDestruct(pt);
             document.getElementById('midiPlainOutput').value=sd.message;
             status.textContent=sd.wasSD?`✅ 解码成功！(🔥 剩余 ${fmtRemaining(sd.remaining)} 后焚毁)`:'✅ 解码成功！';
-            // 存储缓冲区供播放引擎使用
-            if(window._ssSetBuf){window._ssSetBuf(buf.slice(0));}
-            document.getElementById('midiPlayRow').style.display='flex';
             t(sd.wasSD?'🔥 解密成功，剩余 '+fmtRemaining(sd.remaining)+' 后焚毁':'✅ 解密成功');
             autoSavePwd();
         }catch(e){
