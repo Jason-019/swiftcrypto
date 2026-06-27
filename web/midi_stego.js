@@ -175,7 +175,7 @@ function parseMidiNotes(buf){
             let delta=0,b;
             do{b=dv.getUint8(pos++);delta=(delta<<7)|(b&0x7f)}while(b&0x80);
             let status=dv.getUint8(pos);
-            if(status<0x80){status=runningStatus;pos--;}
+            if(status<0x80){status=runningStatus;/* running status: pos already at data */}
             else{pos++;runningStatus=status;}
             const cmd=status&0xF0;
             if(cmd===0x90||cmd===0x80){
@@ -212,7 +212,7 @@ function midiEncode(buf,bits){
             let delta=0,b;
             do{b=bytes[pos++];delta=(delta<<7)|(b&0x7f)}while(b&0x80);
             let status=bytes[pos];
-            if(status<0x80){status=runningStatus;pos--;}
+            if(status<0x80){status=runningStatus;/* running status: pos already at data */}
             else{pos++;runningStatus=status;}
             const cmd=status&0xF0;
             if(cmd===0x90||cmd===0x80){
