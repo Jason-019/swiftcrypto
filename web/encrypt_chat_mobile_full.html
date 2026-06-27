@@ -263,7 +263,7 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
         <div class="btn-row">
             <button class="btn btn-copy" onclick="copyText('cipherOutput')">📋 复制密文</button>
             <button class="btn btn-outline" id="emojiToggle" onclick="toggleEmojiMode()">🎭 Emoji</button>
-            <button class="btn btn-outline" onclick="shareCipher()">📤 分享</button>
+            <button class="btn btn-outline" onclick="shareCipher()">📤 快捷分享</button>
             <button class="btn btn-outline" onclick="openShareModal()">🔗 链接</button>
         </div>
         <div class="char-count" id="cipherCount">密文: 0 字</div>
@@ -730,8 +730,15 @@ async function handlePastedMidi(){
 }
 function uc(){document.getElementById('cipherCount').textContent='密文: '+document.getElementById('cipherOutput').value.length+' 字';document.getElementById('plainCount').textContent='明文: '+document.getElementById('plainOutput').value.length+' 字'}
 function genPwd(){
-    const w='starlight wonder midnight crystal velvet golden crimson silver whisper shadow dawn autumn winter summer thunder lightning rainbow phoenix dragon eagle ocean river mountain forest meadow garden castle bridge tower mirror'.split(' ');
-    const p=w[Math.floor(Math.random()*w.length)]+'-'+Math.floor(Math.random()*900+100)+'-'+w[Math.floor(Math.random()*w.length)];
+    // 从 Taylor Swift 歌词中提取 5-12 字母的单词
+    const text=LYRIC_DATA.replace(/\|/g,' ').replace(/[^a-zA-Z ]/g,'');
+    const words=[...new Set(text.split(/\s+/).filter(w=>w.length>=5&&w.length<=12))];
+    // 随机选两个不同的
+    const i=Math.floor(Math.random()*words.length);
+    let j;do{j=Math.floor(Math.random()*words.length)}while(j===i);
+    // {1,2,3,8,9} 随机排列成 5 位数
+    const digs=[1,2,3,8,9].sort(()=>Math.random()-0.5).join('');
+    const p=words[i]+'-'+digs+'-'+words[j];
     document.getElementById('password').value=p;document.getElementById('password').type='text';
     document.getElementById('togglePwd').textContent='🙈';t('🎲 '+p);updatePwdStrength();
 }
@@ -1138,10 +1145,10 @@ function renderEraCard(){
 
 async function shareEraCard(){
     const cv=document.getElementById('eraCardCanvas');
-    if(!cv)return;
+    if(!cv||!cv.width)return;
     try{
         const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
-        if(!blob)throw new Error('toBlob failed');
+        if(!blob||blob.size<100)throw new Error('Canvas empty');
         await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);
         t('✅ 名片已复制！去微信/QQ 粘贴即可');
     }catch(e){
