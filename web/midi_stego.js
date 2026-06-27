@@ -75,9 +75,10 @@ function midiPickAlbum(el){
         if(s.album===v)songs.push({id,name:s.name,encodable:s.encodable,base64:s.base64_chars});
     }
     songs.sort((a,b)=>a.name.localeCompare(b.name));
-    o.innerHTML=songs.map(s=>
-        `<div class="lcs-opt" data-v="${eh(s.id)}" data-name="${eh(s.name)}" data-enc="${s.encodable}" data-b64="${s.base64}" onclick="midiPickSong(this)">${eh(s.name)} (${s.encodable}bit)</div>`
-    ).join('');
+    o.innerHTML=songs.map(s=>{
+        const cn=Math.max(0,Math.floor((s.base64*3/4-28)/3));
+        return `<div class="lcs-opt" data-v="${eh(s.id)}" data-name="${eh(s.name)}" data-enc="${s.encodable}" data-b64="${s.base64}" onclick="midiPickSong(this)">${eh(s.name)} (${s.encodable}bit ≈${cn}汉字)</div>`;
+    }).join('');
     
     _midiPendingSong=null;
     document.getElementById('midiPickerPreview').textContent='';
@@ -92,7 +93,7 @@ function midiPickSong(el){
     };
     document.getElementById('midiTrigSong').textContent=_midiPendingSong.name;
     document.getElementById('midiPickerPreview').textContent=
-        `📊 ${_midiPendingSong.encodable} 可编码 bit | ≈${_midiPendingSong.base64} Base64 字符`;
+        `📊 ${_midiPendingSong.encodable} bit | ≈${_midiPendingSong.base64} B64字符 | ≈${Math.max(0,Math.floor((_midiPendingSong.base64*3/4-28)/3))} 汉字`;
     document.getElementById('midiConfirmBtn').disabled=false;
     midiToggleCS('midiCsSong');
 }
@@ -101,7 +102,7 @@ function confirmMidiPick(){
     const s=_midiPendingSong;
     document.getElementById('midiSongSelect').value=s.id;
     document.getElementById('midiSongInfo').textContent=
-        `📊 ${s.encodable} 可编码 bit | ≈${s.base64} Base64 字符 | ${s.name}`;
+        `📊 ${s.encodable} bit | ≈${s.base64} B64字符 | ≈${Math.max(0,Math.floor((s.base64*3/4-28)/3))} 汉字 | ${s.name}`;
     closeMidiPicker();
     updateMidiCapacity();
 }
