@@ -125,7 +125,8 @@ function _updateMidiCapacityNow(){
     // Empty text → show 0 usage, full remaining
     if(!plain.trim()){
         bar.style.width='0';bar.style.background='var(--accent)';
-        lbl.textContent=`0/${totalB64} B64字符 | 剩余 ≈${totalB64} 字符`;
+        const cnMax=Math.max(0,Math.floor((totalB64*3/4-28)/3));
+        lbl.textContent=`0/${totalB64} B64字符 | 剩余 ≈${totalB64} 字符 ≈${cnMax} 汉字`;
         return;
     }
     // Estimate: plaintext → AES-GCM → Base64 → bits
@@ -147,7 +148,9 @@ function _updateMidiCapacityNow(){
 
     const cappedUsed=Math.min(b64Used,totalB64);
     const remainingB64=totalB64-cappedUsed;
-    lbl.textContent=`${cappedUsed}/${totalB64} B64字符 | 剩余 ≈${Math.max(0,remainingB64)} 字符`;
+    // 预估剩余中文字数：Base64→bytes 逆推, 减去28字节AES开销, UTF8每汉字≈3字节
+    const cnRemain=Math.max(0,Math.floor((remainingB64*3/4-28)/3));
+    lbl.textContent=`${cappedUsed}/${totalB64} B64字符 | 剩余 ≈${Math.max(0,remainingB64)} 字符 ≈${cnRemain} 汉字`;
     if(b64Used>totalB64)lbl.textContent+=` ⚠️`;
 }
 async function loadMidiOriginal(songId){
