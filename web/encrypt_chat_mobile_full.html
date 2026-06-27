@@ -337,6 +337,7 @@ textarea[readonly]{background:rgba(0,0,0,0.15)}
         <div style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px">
             <div style="font-size:0.75rem;color:var(--dim);margin-bottom:4px">📥 接收方：打开收到的 .mid 文件</div>
             <input type="file" id="midiFileInput" accept=".mid,.midi" onchange="midiDecodeFromFile()" style="width:100%;padding:8px;border-radius:var(--rs);border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);font-size:0.75rem;outline:none;color-scheme:dark">
+            <button class="btn btn-outline" onclick="handlePastedMidi()" style="width:100%;font-size:0.75rem;margin-top:4px">📋 粘贴收到的 .mid 文件</button>
             <textarea id="midiPlainOutput" placeholder="解码后的明文…" readonly style="margin-top:6px;width:100%;box-sizing:border-box"></textarea>
             <div class="btn-row">
                 <button class="btn btn-copy" onclick="copyText('midiPlainOutput')">📋 复制明文</button>
@@ -680,11 +681,52 @@ async function shareCipher(){
 }
 function handleIncomingShare(){
     const params=new URLSearchParams(location.search);
+    // ── PWA Share Target: 微信分享 .mid 文件 ──
+    if(params.get('shared')==='1'){
+        switchTab('midi');
+        setTimeout(async ()=>{
+            try{
+                const resp=await fetch('/_shared_midi');
+                if(!resp.ok)return;
+                const name=resp.headers.get('X-Shared-File')||'shared.mid';
+                const blob=await resp.blob();
+                const file=new File([blob],name,{type:'audio/midi'});
+                const dt=new DataTransfer();dt.items.add(file);
+                document.getElementById('midiFileInput').files=dt.files;
+                t('📨 收到分享的 .mid 文件: '+name);
+                midiDecodeFromFile();
+            }catch(e){console.warn('Shared MIDI load failed:',e)}
+        },800);
+        return;
+    }
+    // ── 链接分享：密文参数 ──
     const shared=params.get('text')||params.get('title')||'';
     if(shared&&shared.length>10&&B64.indexOf(shared[0])>=0){
         document.getElementById('cipherInput').value=shared;
         switchTab('dec');setTimeout(()=>doDecrypt(),400);
     }
+}
+
+// ── 粘贴 .mid 文件（桌面端备选）───
+async function handlePastedMidi(){
+    try{
+        const items=await navigator.clipboard.read();
+        for(const item of items){
+            for(const type of item.types){
+                if(type==='audio/midi'||type==='application/octet-stream'||type.includes('midi')){
+                    const blob=await item.getType(type);
+                    const name='pasted_'+Date.now()+'.mid';
+                    const file=new File([blob],name,{type:'audio/midi'});
+                    const dt=new DataTransfer();dt.items.add(file);
+                    document.getElementById('midiFileInput').files=dt.files;
+                    t('📋 已粘贴 .mid 文件');
+                    midiDecodeFromFile();
+                    return;
+                }
+            }
+        }
+        t('⚠️ 剪贴板中未找到 .mid 文件');
+    }catch(e){t('⚠️ 无法读取剪贴板: '+e.message)}
 }
 function uc(){document.getElementById('cipherCount').textContent='密文: '+document.getElementById('cipherOutput').value.length+' 字';document.getElementById('plainCount').textContent='明文: '+document.getElementById('plainOutput').value.length+' 字'}
 function genPwd(){
@@ -1241,7 +1283,7 @@ loadChat();checkShareLink();initDeviceName();setTheme();updateBgOpacity(75);uc()
 handleIncomingShare();
 // PWA service worker
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js')}
-</script><script src="midi_stego.js?v=27"></script>
+</script><script src="midi_stego.js?v=28"></script>
 <!-- 🎹 MIDI 挑选 Modal -->
 <div id="midiPickerModal" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);justify-content:flex-end;align-items:stretch">
     <div class="sheet" style="background:rgba(20,20,45,0.98);border-radius:16px 16px 0 0;padding:16px;max-height:75vh;width:100%;overflow-y:auto;display:flex;flex-direction:column;gap:10px;">

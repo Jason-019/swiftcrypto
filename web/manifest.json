@@ -17,10 +17,12 @@
   ],
   "share_target": {
     "action": "./encrypt_chat_mobile_full.html",
-    "method": "GET",
+    "method": "POST",
+    "enctype": "multipart/form-data",
     "params": {
       "title": "title",
-      "text": "text"
+      "text": "text",
+      "files": [{"name": "midi", "accept": [".mid", ".midi", "audio/midi"]}]
     }
   }
 }
